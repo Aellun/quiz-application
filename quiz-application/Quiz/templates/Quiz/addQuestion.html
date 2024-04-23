@@ -1,0 +1,39 @@
+{% extends 'Quiz/dependencies.html' %}
+
+{% block content %}
+
+<div class="jumbotron container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h1 class="card-title text-center">ADD QUESTION</h1>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.question.label_tag }}
+                        <input type="{{ form.question.field.widget.input_type }}" name="{{ form.question.name }}" maxlength="200" class="form-control" id="{{ form.question.id_for_label }}" value="{{ form.question.value }}" required>
+                        <br>
+                        {{ form.option1.label_tag }}
+                        <input type="{{ form.option1.field.widget.input_type }}" name="{{ form.option1.name }}" maxlength="200" class="form-control" id="{{ form.option1.id_for_label }}" value="{{ form.option1.value }}" required>
+                        <br>
+                        {{ form.option2.label_tag }}
+                        <input type="{{ form.option2.field.widget.input_type }}" name="{{ form.option2.name }}" maxlength="200" class="form-control" id="{{ form.option2.id_for_label }}" value="{{ form.option2.value }}" required>
+                        <br>
+                        {{ form.option3.label_tag }}
+                        <input type="{{ form.option3.field.widget.input_type }}" name="{{ form.option3.name }}" maxlength="200" class="form-control" id="{{ form.option3.id_for_label }}" value="{{ form.option3.value }}" required>
+                        <br>
+                        {{ form.option4.label_tag }}
+                        <input type="{{ form.option4.field.widget.input_type }}" name="{{ form.option4.name }}" maxlength="200" class="form-control" id="{{ form.option4.id_for_label }}" value="{{ form.option4.value }}" required>
+                        <br>
+                        {{ form.answer.label_tag }}
+                        <input type="{{ form.answer.field.widget.input_type }}" name="{{ form.answer.name }}" maxlength="200" class="form-control" id="{{ form.answer.id_for_label }}" value="{{ form.answer.value }}" required>
+                        <br>
+                        <input type="submit" name="Submit" class="btn btn-primary btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
