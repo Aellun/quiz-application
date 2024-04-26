@@ -1,7 +1,17 @@
 {% extends 'Quiz/dependencies.html' %}
-{% load static%}
+{% load static %}
+
 {% block content %}
 <div class="container jumbotron">
+    <!-- Display error messages -->
+    {% if messages %}
+    <div class="alert alert-danger">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <form method="POST" action="">
         {% csrf_token %}
         <p><input type="text" name="username" placeholder="Username..."></p>

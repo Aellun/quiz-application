@@ -1,4 +1,5 @@
 from django.shortcuts import redirect,render
+from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from .forms import *
 from .models import *
@@ -7,7 +8,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def landing_page(request):
-    return render(request, 'landingPage.html')
+    return render(request, 'Quiz/landingPage.html')
 
 def home(request):
     if request.method == 'POST':
@@ -76,15 +77,18 @@ def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
-       if request.method=="POST":
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-        user=authenticate(request,username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return redirect('/')
-       context={}
-       return render(request,'Quiz/login.html',context)
+        if request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                # If authentication fails, display an error message
+                messages.error(request, "Invalid username or password.")
+        context = {}
+        return render(request, 'Quiz/login.html', context)
 
 def logoutPage(request):
     logout(request)
