@@ -2,22 +2,62 @@
 {% load static %}
 
 {% block content %}
-<div class="container jumbotron">
-    <!-- Display error messages -->
-    {% if messages %}
-    <div class="alert alert-danger">
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="main">
+                <h1>LearnHub</h1>
+                <h3>Enter your login credentials</h3>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="Enter your Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter your Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                </form>
+                <p>Not registered? <a href='{% url 'register' %}' style="text-decoration: none;">Create an account</a></p>
+            </div>
+        </div>
     </div>
-    {% endif %}
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <p><input type="text" name="username" placeholder="Username..."></p>
-        <p><input type="password" name="password" placeholder="Password..." ></p>
-        <input class="btn btn-success" type="submit" value="Login">
-        <p>Do not have an account<a href='{% url 'register' %}'>Register</a></p>
-    </form>
 </div>
+
+<style>
+    .main {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        text-align: left;
+        margin-top: 50px;
+    }
+
+    h1 {
+        color: #4CAF50;
+    }
+
+    label {
+        text-align: left;
+        color: #555;
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .btn-submit {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
 {% endblock %}
