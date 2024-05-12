@@ -2,6 +2,8 @@ from django.forms import ModelForm
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django import forms
+from .models import QuesModel
 
 class createuserform(UserCreationForm):
     class Meta:
@@ -20,8 +22,11 @@ class createuserform(UserCreationForm):
        
 
 
-class addQuestionform(ModelForm):
+class addQuestionform(forms.ModelForm):
     class Meta:
-        model=QuesModel
-        fields="__all__"
+        model = QuesModel
+        fields = ['category', 'question', 'option1', 'option2', 'option3', 'option4', 'answer']
+        widgets = {
+            'category': forms.Select(choices=QuesModel.CATEGORY_CHOICES),  # Include choices here
+        }
     

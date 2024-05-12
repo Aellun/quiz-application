@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os  # Importing the os module
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,8 +27,7 @@ SECRET_KEY = '36jk%az^il&d66&dhy(j*!hu9b!oa2imidr5bwqcpwcuwz3cj8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -76,8 +77,12 @@ WSGI_APPLICATION = 'DjangoQuiz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'QuizApp',
+        'USER': 'postgres',
+        'PASSWORD': '0vek#@!2023',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -118,6 +123,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[BASE_DIR/'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Using os.path.join to construct the path

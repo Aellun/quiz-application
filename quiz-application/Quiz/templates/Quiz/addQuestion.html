@@ -10,6 +10,20 @@
                     <h1 class="card-title text-center">ADD QUESTION</h1>
                     <form action="" method="POST">
                         {% csrf_token %}
+                        <!-- Add category field -->
+                        <div class="form-group">
+                            <label for="category">Category:</label>
+                            <select class="form-control" id="category" name="category">
+                                <option value="Programming">Computer Science</option>
+                                <option value="communication">Communication Skills</option>
+                                <option value="Emotion">Emotional intelligennce</option>
+                                <option value="Ethics">Ethics</option>
+                                <option value="Sales">Customer Service</option>
+                                <!-- Add more categories as needed -->
+                            </select>
+                        </div>
+                        <!-- End of category field -->
+                        <br>
                         {{ form.question.label_tag }}
                         <input type="{{ form.question.field.widget.input_type }}" name="{{ form.question.name }}" maxlength="200" class="form-control" id="{{ form.question.id_for_label }}" value="{{ form.question.value }}" required>
                         <br>
@@ -28,6 +42,7 @@
                         {{ form.answer.label_tag }}
                         <input type="{{ form.answer.field.widget.input_type }}" name="{{ form.answer.name }}" maxlength="200" class="form-control" id="{{ form.answer.id_for_label }}" value="{{ form.answer.value }}" required>
                         <br>
+                        
                         <input type="submit" name="Submit" class="btn btn-primary btn-block">
                     </form>
                 </div>

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/6en8XCp+HHAAK5GSLf2xlYtvJ8U2Q4U+9cuEnJ" crossorigin="anonymous">
+    
     <style>
        * {
     padding: 0;
@@ -13,11 +15,12 @@
 }
 
 body {
+    background-image: url('/static/learn.JPG');
     background-color: white;
     color: black;
     font-family: "Fira Sans", sans-serif;
-    background-color: white;
 }
+
 
 nav {
     width: 100%;
@@ -462,6 +465,8 @@ footer .footer span a:hover {
 </head>
 
 <body>
+    
+
     <nav>
         <div class="heading">Welcome to LearnHub</div>
         <span class="sideMenuButton" onclick="openNavbar()">&#9776;</span>
@@ -479,7 +484,7 @@ footer .footer span a:hover {
     <!-- Side navigation bar for responsive website -->
     <div class="sideNavigationBar" id="sideNavigationBar">
         <a href="#" class="closeButton" onclick="closeNavbar()">&#x274C;</a>
-        <a href="#Home">Home</a>
+        <a href="{% url 'login' %}">Home</a>
         <a href="#About">About</a>
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
@@ -488,7 +493,10 @@ footer .footer span a:hover {
     <!-- Content -->
     <div class="line" id="Home">
         <div class="side1">
-            <h1>Welcome to LearnHub</h1>
+            <div class="box">
+            <p>LearnHub is a dedicated platform aimed at facilitating employee learning, primarily through quizzes covering various workplace-relevant topics. Inspired by the absence of such a tool within developer organizations, LearnHub empowers HR departments to create quizzes aligned with their training initiatives, thereby fostering continuous learning among employees.</p>
+                </div>
+            
             <button>
                 <a href="https://www.linkedin.com/pulse/5-essential-benefits-employee-training-development/">Explore More</a>
             </button>
@@ -503,40 +511,47 @@ footer .footer span a:hover {
         <div class="content">
             <div class="title">
                 <span>About LearnHub</span>
-                <p> What to expect learn in this site</p>
+                <p> What to expect</p>
             </div>
             <div class="boxes">
                 <div class="box">
                     <div class="topic">
-                        <a href="https://cpe.rutgers.edu/employee-training/conflict-resolution" target="_blank">Emotional Intelligence</a>
+                        <h2>Emotional Intelligence</h2>
                     </div>
                     <p>Emotional intelligence involves understanding and managing one's own emotions and those of others. It's a key skill for effective communication, teamwork, and leadership. Training in this area helps employees navigate complex interpersonal situations more effectively.</p>
+                    <br/>
+                    <button>
+                    <a href="https://www.testgorilla.com/blog/emotional-intelligence-workplace/?utm_term=&utm_campaign=PerformanceMax%20RoW%20NewConvSet&utm_source=google&utm_medium=cpc&hsa_acc=4932434860&hsa_cam=13402555368&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwi_exBhA8EiwA_kU1MlxZKfzKnWAQezth6w6T2C8Vl2933j6bYFDqTuz52oPuZ7Ku6uh5mBoCleMQAvD_BwE&gad_source=1" target="_blank">More</a>
+                </button>
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://cpe.rutgers.edu/employee-training/conflict-resolution" target="_blank">Conflict Resolution</a>
+                        <h2>Conflict Resolution</h2>
                     </div>
                     <p>This topic focuses on teaching employees how to handle disagreements and disputes in a constructive manner. It's crucial for maintaining a harmonious work environment and ensuring smooth operations.</p>
+                    <br/>
+                    <button>
+                    <a href="https://ctb.ku.edu/en/table-of-contents/implement/provide-information-enhance-skills/conflict-resolution/main#:~:text=Conflict%20resolution%20is%20a%20way,negotiation%20to%20resolve%20the%20disagreement." target="_blank">More</a>
+                    </button>
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://cpe.rutgers.edu/employee-training/conflict-resolution" target="_blank">Customer Service Training</a>
+                        <h2>Customer Service</h2>
                     </div>
-                    <p>With the increasing importance of customer satisfaction in today's business environment, training employees in customer service skills is essential. This includes understanding customer needs, providing excellent service, and handling complaints professionally. It's particularly relevant for businesses that directly interact with customers .</p>
+                    <p>With the increasing importance of customer satisfaction in today's business environment, training employees in customer service skills is essential.</p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    <button>
+                    <a href="https://blog.hubspot.com/service/customer-service-support-training" target="_blank">More</a>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <section class="contact" id="contact">
-            <div class="contact-info">
-                <div class="rightside1">
-                    <div class="title1"><span>Contact Us</span></div>
-                    <div class="content1">
-                        5th Floor NHIF Building
-Ragati Road
-P.O Box 34670 - 00100
-Nairobi - Kenya
-
+        
+<!-- 
                     </div>
                 </div>
             </div>
@@ -578,12 +593,24 @@ Nairobi - Kenya
                 </div>
             </div>
         </section>
-        
-    <footer>
-        <div class="footer">
-            <span>Created By <a href="https://www.linkedin.com/in/okello-kevin//" target="_blank">LearnHub</a></span>
-        </div>
-    </footer>
+        <section class="contact" id="contact">
+            <div class="contact-info">
+                <div class="rightside1">
+                    <div class="title1"><span>Contact Us</span></div>
+                    <div class="content1">
+                        5th Floor NHIF Building
+Ragati Road
+P.O Box 34670 - 00100
+Nairobi - Kenya -->
+<footer>
+    <div class="footer">
+        <span>&copy; LearnHub 2024</span>
+        <span><a href="https://www.linkedin.com/in/okello-kevin//" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+        <span><a href="https://github.com/Aellun" target="_blank"><i class="fab fa-github"></i></a></span>
+    </div>
+</footer>
+
+
     <script>
        function openNavbar() {
     document.getElementById("sideNavigationBar")
@@ -601,6 +628,7 @@ function closeNavbar() {
             document.getElementById("sideNavigationBar").style.width = "0%";
         }
     </script>
+    
 </body>
 
 </html>

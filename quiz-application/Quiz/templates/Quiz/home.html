@@ -1,69 +1,183 @@
 {% extends 'Quiz/dependencies.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/css/ionicons.min.css" integrity="sha512-2o5HhKUfTUpCNXd+z4cXFlv4wTpe3tPlmPQcDUJ/l0uQa3TcUXnKm6jimj4fEaSmfXPKHV5gPO2kG5TXt7URxA==" crossorigin="anonymous" />
+{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    // JavaScript code for handling category selection
+ document.querySelectorAll('.sidebar ul li a').forEach(function (item) {
+     item.addEventListener('click', function (event) {
+         event.preventDefault();
+         var category = this.textContent.trim();
+         console.log('Link clicked:', category); // Debugging line
+         fetchQuestions(category); // Correctly call fetchQuestions with the category
+     });
+ });
+ 
+ // Setup AJAX to include CSRF token
+ jQuery.ajaxSetup({
+     headers: {
+         "X-CSRFToken": getCookie("csrftoken")
+     }
+ });
+ 
+ // Function to get CSRF token from cookies
+ function getCookie(name) {
+     var cookieValue = null;
+     if (document.cookie && document.cookie!== '') {
+         var cookies = document.cookie.split(';');
+         for (var i = 0; i < cookies.length; i++) {
+             var cookie = jQuery.trim(cookies[i]);
+             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                 break;
+             }
+         }
+     }
+     return cookieValue;
+ }
+ 
+ // Function to fetch questions based on the category
+ function fetchQuestions(category) {
+     jQuery.ajax({
+         url: '/fetch-questions/', // Ensure this URL matches your Django view URL
+         method: 'POST',
+         data: { category: category }, // Use the category variable here
+         success: function(response) {
+             // Handle success
+             $('.main-content').html(response); // Update the main content with the response
+         },
+         error: function(error) {
+             // Handle error
+             console.log(error);
+         }
+     });
+ }
+ 
+ // Load default content when the page loads
+ jQuery(document).ready(function () {
+     fetchDefaultContent();
+ });
+ 
+ // Function to fetch default content
+ function fetchDefaultContent() {
+     // You can fetch default content here if needed
+ }
+ 
+ </script>
+<!-- <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script> -->
 
 {% block content %}
-{% load static %}
-<div class="container">
-    <h1>Welcome to LearnHub</h1>
+<style>
+    /* Reset padding and margin for body and sidebar */
+    body,.sidebar {
+        margin: 0;
+        padding: 0;
+    }
 
-    <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
+    /* Sidebar Menu Styles */
+   .sidebar {
+        position: fixed;
+        top: 8%;
+        left: 0;
+        height: 100%;
+        width: 20%;
+        background-color: #19222a;
+        padding: 20px;
+        overflow: auto;
+        color: #fff;
+    }
 
-    <form method='post' action=''>
-        {% csrf_token %}
-        {% for q in questions %}
-        <fieldset>
-            <legend>{{ forloop.counter }}. {{ q.question }}</legend>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option1{{ forloop.counter }}" value="option1" checked>
-                <label class="form-check-label" for="option1{{ forloop.counter }}">
-                    {{ q.option1 }}
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option2{{ forloop.counter }}" value="option2">
-                <label class="form-check-label" for="option2{{ forloop.counter }}">
-                    {{ q.option2 }}
-                </label>
-            </div>
+   .sidebar-title {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option3{{ forloop.counter }}" value="option3">
-                <label class="form-check-label" for="option3{{ forloop.counter }}">
-                    {{ q.option3 }}
-                </label>
-            </div>
+   .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option4{{ forloop.counter }}" value="option4">
-                <label class="form-check-label" for="option4{{ forloop.counter }}">
-                    {{ q.option4 }}
-                </label>
-            </div>
-            <!-- Repeat for other options -->
-        </fieldset>
-        {% endfor %}
-        <input id='timer' type='hidden' name="timer" value="">
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    {% block script %}
-        <script>
-            console.log('hello world')
-            const timer = document.getElementById('displaytimer')
-            console.log(timer.textContent)
-            const inputtag = document.getElementById('timer')
+   .sidebar ul li {
+        margin-bottom: 10px;
+    }
 
-            let t = 0
-            const intervalId = setInterval(() => {
-                t += 1
-                timer.innerHTML = "<b>Timer: " + t + " seconds</b>"
-                inputtag.value = t
-            }, 1000)
+   .sidebar ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        display: block;
+        padding: 10px;
+        transition: all 0.3s ease;
+    }
 
-            // Clear interval on form submission to prevent timer from continuing after submission
-            document.querySelector('form').addEventListener('submit', () => {
-                clearInterval(intervalId)
-            })
-        </script>
-    {% endblock script %}
+   .sidebar ul li a:hover {
+        background-color: #0066cc;
+    }
+
+    /* Icon styles */
+   .sidebar ul li i {
+        margin-right: 10px;
+    }
+
+    /* Main content area styles */
+   .main-content {
+        margin-left: 20%; /* Adjust according to sidebar width */
+        padding: 20px;
+        color: black;
+        font-family: "Fira Sans", sans-serif;
+        background-image: url("/static/images/learn.jpg") 50% 0 no-repeat fixed;
+        height: 650px;
+        
+    }
+
+    /* Default content styles */
+   .default-content {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+       .sidebar {
+            width: 100%;
+            height: auto;
+        }
+
+       .main-content {
+            margin-left: 0;
+            padding: 20px;
+        }
+    }
+</style>
+{% csrf_token %}
+
+<div class="main-content" id="loading-indicator" style="display:none;">
+    <p>Loading...</p>
 </div>
+
+<!-- Sidebar Menu -->
+<div class="sidebar">
+    <div class="sidebar-title">Categories</div>
+    <ul>
+        <li><a href="{% url 'Programming' %}"><i class="ion-ios-code-outline"></i> Computer Science</a></li>
+        <li><a href="{% url 'Communication' %}"><i class="ion-chatbubble-outline"></i> Communication Skills</a></li>
+        <li><a href="{% url 'emotion' %}"><i class="ion-heart-outline"></i> Emotional Intelligence</a></li>
+        <li><a href="{% url 'ethics' %}"><i class="ion-compass-outline"></i> Ethics</a></li>
+        <li><a href="{% url 'Sales' %}"><i class="ion-compass-outline"></i> Customer Service</a></li>
+    </ul>
+</div>
+
+<!-- Main content area -->
+<div class="main-content">
+    <div class="default-content">
+        <!-- Default content here -->
+        <h2>Welcome to the Quiz App!</h2>
+        <p>This is some default information that is displayed when the page loads.</p>
+        <p>Click on a category on the left to view questions related to that category.</p>
+    </div>
+</div>
+
+
+
+
 {% endblock %}

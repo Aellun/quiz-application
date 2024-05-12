@@ -1,0 +1,69 @@
+{% extends 'Quiz/dependencies.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <h1>Welcome to LearnHub</h1>
+
+    <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
+
+    <form method='post' action='{% url "home" %}'>
+        {% csrf_token %}
+        {% for q in questions %}
+        <fieldset>
+            <legend>{{ forloop.counter }}. {{ q.question }}</legend>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option1{{ forloop.counter }}" value="option1" checked>
+                <label class="form-check-label" for="option1{{ forloop.counter }}">
+                    {{ q.option1 }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option2{{ forloop.counter }}" value="option2">
+                <label class="form-check-label" for="option2{{ forloop.counter }}">
+                    {{ q.option2 }}
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option3{{ forloop.counter }}" value="option3">
+                <label class="form-check-label" for="option3{{ forloop.counter }}">
+                    {{ q.option3 }}
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option4{{ forloop.counter }}" value="option4">
+                <label class="form-check-label" for="option4{{ forloop.counter }}">
+                    {{ q.option4 }}
+                </label>
+            </div>
+            <!-- Repeat for other options -->
+        </fieldset>
+        {% endfor %}
+        <input id='timer' type='hidden' name="timer" value="">
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% block script %}
+        <script>
+            console.log('hello world')
+            const timer = document.getElementById('displaytimer')
+            console.log(timer.textContent)
+            const inputtag = document.getElementById('timer')
+
+            let t = 0
+            const intervalId = setInterval(() => {
+                t += 1
+                timer.innerHTML = "<b>Timer: " + t + " seconds</b>"
+                inputtag.value = t
+            }, 1000)
+
+            // Clear interval on form submission to prevent timer from continuing after submission
+            document.querySelector('form').addEventListener('submit', () => {
+                clearInterval(intervalId)
+            })
+        </script>
+    {% endblock script %}
+</div>
+{% endblock %}
