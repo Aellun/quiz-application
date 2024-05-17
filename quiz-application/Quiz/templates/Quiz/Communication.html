@@ -7,8 +7,10 @@
 
     <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
 
-    <form method='post' action=''>
+    <form method='post' action='{% url "home" %}'>
         {% csrf_token %}
+        <!-- <input type="hidden" name="category" id="selected-category" value=""> -->
+        <input id='selected-category' type='hidden' name="category" value="">
         {% for q in questions %}
         <fieldset>
             <legend>{{ forloop.counter }}. {{ q.question }}</legend>
@@ -38,7 +40,6 @@
                     {{ q.option4 }}
                 </label>
             </div>
-            <!-- Repeat for other options -->
         </fieldset>
         {% endfor %}
         <input id='timer' type='hidden' name="timer" value="">
@@ -47,17 +48,28 @@
     </form>
     {% block script %}
         <script>
-            console.log('hello world')
-            const timer = document.getElementById('displaytimer')
-            console.log(timer.textContent)
-            const inputtag = document.getElementById('timer')
+            // JavaScript code for handling category selection and timer
+console.log('hello world')
+const timer = document.getElementById('displaytimer')
+console.log(timer.textContent)
+const inputtag = document.getElementById('timer')
+ // Log the selected category before form submission
+const selectedCategory = document.getElementById('selected-category').value;
+console.log('Selected category:', selectedCategory);
 
-            let t = 0
-            const intervalId = setInterval(() => {
-                t += 1
-                timer.innerHTML = "<b>Timer: " + t + " seconds</b>"
-                inputtag.value = t
-            }, 1000)
+let t = 0
+const intervalId = setInterval(() => {
+    t += 1
+    timer.innerHTML = "<b>Timer: " + t + " seconds</b>"
+    inputtag.value = t
+}, 1000)
+
+// Clear interval on form submission to prevent timer from continuing after submission
+document.querySelector('form').addEventListener('submit', () => {
+    clearInterval(intervalId)
+   
+})
+
 
             // Clear interval on form submission to prevent timer from continuing after submission
             document.querySelector('form').addEventListener('submit', () => {

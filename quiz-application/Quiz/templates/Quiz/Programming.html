@@ -9,6 +9,7 @@
 
     <form method='post' action='{% url "home" %}'>
         {% csrf_token %}
+        <input id='selected-category' type='hidden' name="category" value="">
         {% for q in questions %}
         <fieldset>
             <legend>{{ forloop.counter }}. {{ q.question }}</legend>
@@ -38,7 +39,6 @@
                     {{ q.option4 }}
                 </label>
             </div>
-            <!-- Repeat for other options -->
         </fieldset>
         {% endfor %}
         <input id='timer' type='hidden' name="timer" value="">
@@ -47,22 +47,29 @@
     </form>
     {% block script %}
         <script>
-            console.log('hello world')
-            const timer = document.getElementById('displaytimer')
-            console.log(timer.textContent)
-            const inputtag = document.getElementById('timer')
+            console.log('hello world');
+            const timer = document.getElementById('displaytimer');
+            const inputtag = document.getElementById('timer');
 
-            let t = 0
+            let t = 0;
             const intervalId = setInterval(() => {
-                t += 1
-                timer.innerHTML = "<b>Timer: " + t + " seconds</b>"
-                inputtag.value = t
-            }, 1000)
+                t += 1;
+                timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
+                inputtag.value = t;
+            }, 1000);
+
+            document.querySelectorAll('input[name="selected-category"]').forEach((radioButton) => {
+                radioButton.addEventListener('click', () => {
+                    const selectedCategory = radioButton.value;
+                    console.log('Selected category:', selectedCategory);
+                    document.getElementById('selected-category').value = selectedCategory;
+                });
+            });
 
             // Clear interval on form submission to prevent timer from continuing after submission
             document.querySelector('form').addEventListener('submit', () => {
-                clearInterval(intervalId)
-            })
+                clearInterval(intervalId);
+            });
         </script>
     {% endblock script %}
 </div>

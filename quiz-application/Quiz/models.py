@@ -2,12 +2,13 @@ from django.db import models
 
 class QuesModel(models.Model):
     CATEGORY_CHOICES = [
-        ('Programming', 'Programming'),
-        ('communication', 'Communication'),
-        ('Emotion', 'Emotion'),
-        ('Ethics', 'Ethics'),
-        ('Sales', 'Sales')
-        ]
+    ('programming', 'Programming'),
+    ('communication', 'Communication'),
+    ('emotion', 'Emotion'),
+    ('ethics', 'Ethics'),
+    ('sales', 'Sales')
+]
+
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     question = models.CharField(max_length=200, null=True)

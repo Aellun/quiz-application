@@ -10,15 +10,14 @@
                     <h1 class="card-title text-center">ADD QUESTION</h1>
                     <form action="" method="POST">
                         {% csrf_token %}
-                        <!-- Add category field -->
                         <div class="form-group">
                             <label for="category">Category:</label>
                             <select class="form-control" id="category" name="category">
-                                <option value="Programming">Computer Science</option>
+                                <option value="programming">Computer Science</option>
                                 <option value="communication">Communication Skills</option>
-                                <option value="Emotion">Emotional intelligennce</option>
-                                <option value="Ethics">Ethics</option>
-                                <option value="Sales">Customer Service</option>
+                                <option value="emotion">Emotional intelligennce</option>
+                                <option value="ethics">Ethics</option>
+                                <option value="sales">Customer Service</option>
                                 <!-- Add more categories as needed -->
                             </select>
                         </div>
