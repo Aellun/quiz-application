@@ -3,34 +3,116 @@
 
 {% block content %}
 <style>
-    /* Your CSS styles here */
+    .sidebar {
+        width: 200px;
+        float: left;
+    }
+    .main-content {
+        margin-left: 220px;
+        padding: 10px;
+    }
+    .sidebar-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+    .sidebar ul li {
+        margin-bottom: 10px;
+    }
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #333;
+    }
+    .sidebar ul li a:hover {
+        text-decoration: underline;
+    }
 </style>
 {% csrf_token %}
 
-<div class="main-content" id="loading-indicator" style="display:none;">
-    <p>Loading...</p>
-</div>
-
 <!-- Sidebar Menu -->
 <div class="sidebar">
-    <div class="sidebar-title">Categories</div>
+    <div class="sidebar-title">Menu</div>
     <ul>
-        <li><a href="{% url 'Programming' %}"><i class="ion-ios-code-outline"></i> Computer Science</a></li>
-        <li><a href="{% url 'Communication' %}"><i class="ion-chatbubble-outline"></i> Communication Skills</a></li>
-        <li><a href="{% url 'emotion' %}"><i class="ion-heart-outline"></i> Emotional Intelligence</a></li>
-        <li><a href="{% url 'ethics' %}"><i class="ion-compass-outline"></i> Ethics</a></li>
-        <li><a href="{% url 'Sales' %}"><i class="ion-compass-outline"></i> Customer Service</a></li>
+        <li><a href="#" data-url="{% url 'dashboard' %}" class="category-link"><i class="ion-ios-speedometer-outline"></i> Dashboard</a></li>
+        <ul >
+            <li><a href="{% url 'Programming' %}"><i class="ion-ios-code-outline"></i> Computer Science</a></li>
+            <li><a href="{% url 'Communication' %}"><i class="ion-chatbubble-outline"></i> Communication Skills</a></li>
+            <li><a href="{% url 'emotion' %}"><i class="ion-heart-outline"></i> Emotional Intelligence</a></li>
+            <li><a href="{% url 'ethics' %}"><i class="ion-compass-outline"></i> Ethics</a></li>
+            <li><a href="{% url 'Sales' %}"><i class="ion-compass-outline"></i> Customer Service</a></li>
+            <!-- <li><a href="{% url 'dashboard' %}"><i class="ion-compass-outline"></i> Dashboard</a></li> -->
+        </ul>
     </ul>
-    <input type="hidden" id="selected-category">
 </div>
 
 <!-- Main content area -->
 <div class="main-content">
-    <div class="default-content">
+    <div id="content-area">
         <!-- Default content here -->
-        <h2>Welcome to the Quiz App!</h2>
-        <p>This is some default information that is displayed when the page loads.</p>
-        <p>Click on a category on the left to view questions related to that category.</p>
     </div>
 </div>
+
+<!-- Loading Indicator -->
+<div id="loading-indicator" style="display:none;">
+    <p>Loading...</p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.category-link');
+        const contentArea = document.getElementById('content-area');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        // Load the dashboard content by default
+        function loadDashboard() {
+            const url = "{% url 'dashboard' %}";
+
+            loadingIndicator.style.display = 'block';
+            contentArea.style.display = 'none';
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    contentArea.innerHTML = data;
+
+                    loadingIndicator.style.display = 'none';
+                    contentArea.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching content:', error);
+                    loadingIndicator.style.display = 'none';
+                    contentArea.style.display = 'block';
+                });
+        }
+
+        loadDashboard();
+
+        links.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const url = this.getAttribute('data-url');
+
+                loadingIndicator.style.display = 'block';
+                contentArea.style.display = 'none';
+
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        contentArea.innerHTML = data;
+
+                        loadingIndicator.style.display = 'none';
+                        contentArea.style.display = 'block';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching content:', error);
+                        loadingIndicator.style.display = 'none';
+                        contentArea.style.display = 'block';
+                    });
+            });
+        });
+    });
+</script>
 {% endblock %}

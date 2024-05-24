@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.10-0/css/ionicons.min.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="dashboard-container">
+        <div class="card">
+            <div class="icon"><i class="ion-ios-analytics"></i></div>
+            <h3>Analytics</h3>
+            <p>Get detailed insights and reports.</p>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="ion-ios-people"></i></div>
+            <h3>Users</h3>
+            <p>Manage your users and their activities.</p>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="ion-ios-book"></i></div>
+            <h3>Courses</h3>
+            <p>View and manage your courses.</p>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="ion-ios-stats"></i></div>
+            <h3>Statistics</h3>
+            <p>View performance statistics.</p>
+        </div>
+    </div>
+    <div class="dashboard-container">
+        <h2>Statistics</h2>
+        <div class="statistics">
+            <div class="stat">
+                <h3>150</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat">
+                <h3>30</h3>
+                <p>New Signups</p>
+            </div>
+            <div class="stat">
+                <h3>120</h3>
+                <p>Courses Available</p>
+            </div>
+            <div class="stat">
+                <h3>300</h3>
+                <p>Quizzes Taken</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

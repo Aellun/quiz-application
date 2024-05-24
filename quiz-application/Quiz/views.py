@@ -14,6 +14,9 @@ import logging
 def landing_page(request):
     return render(request, 'Quiz/landingPage.html')
 
+def dashboard_view(request):
+    return render(request, 'Quiz/dashboard.html')
+
 # View for user login
 def login_page(request):
     if request.user.is_authenticated:

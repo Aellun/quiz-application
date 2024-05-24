@@ -19,6 +19,7 @@ urlpatterns = [
     path('sales/', sales_service_questions, name='Sales'),
     path('ethics/', ethics_questions, name='ethics'),
     path('programming/', programming_questions, name='Programming'),
+    path('dashboard/', dashboard_view, name='dashboard'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
