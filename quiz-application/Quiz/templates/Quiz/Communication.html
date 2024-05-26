@@ -49,32 +49,33 @@
     {% block script %}
         <script>
             // JavaScript code for handling category selection and timer
-console.log('hello world')
-const timer = document.getElementById('displaytimer')
-console.log(timer.textContent)
-const inputtag = document.getElementById('timer')
- // Log the selected category before form submission
-const selectedCategory = document.getElementById('selected-category').value;
-console.log('Selected category:', selectedCategory);
+            const timer = document.getElementById('displaytimer');
+            const inputTag = document.getElementById('timer');
+            let t = 0;
+            let intervalId;
 
-let t = 0
-const intervalId = setInterval(() => {
-    t += 1
-    timer.innerHTML = "<b>Timer: " + t + " seconds</b>"
-    inputtag.value = t
-}, 1000)
+            // Function to start the timer
+            const startTimer = () => {
+                intervalId = setInterval(() => {
+                    t += 1;
+                    timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
+                    inputTag.value = t;
+                }, 1000);
+            };
 
-// Clear interval on form submission to prevent timer from continuing after submission
-document.querySelector('form').addEventListener('submit', () => {
-    clearInterval(intervalId)
-   
-})
-
+            // Event listener for radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+                radio.addEventListener('click', () => {
+                    if (intervalId === undefined) {
+                        startTimer();
+                    }
+                });
+            });
 
             // Clear interval on form submission to prevent timer from continuing after submission
             document.querySelector('form').addEventListener('submit', () => {
-                clearInterval(intervalId)
-            })
+                clearInterval(intervalId);
+            });
         </script>
     {% endblock script %}
 </div>

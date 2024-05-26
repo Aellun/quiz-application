@@ -76,6 +76,8 @@ def home(request):
         # Process POST request
         print("Processing POST request...")
         # Placeholder for processing logic
+        # Assuming you want to redirect or return some response after processing POST
+        return HttpResponse("POST request processed")  # Or use redirect or render as needed
     else:
         # Render the home page with categories
         print("Rendering home page...")

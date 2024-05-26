@@ -27,6 +27,11 @@ class addQuestionform(forms.ModelForm):
         model = QuesModel
         fields = ['category', 'question', 'option1', 'option2', 'option3', 'option4', 'answer']
         widgets = {
-            'category': forms.Select(choices=QuesModel.CATEGORY_CHOICES),  # Include choices here
+            'category': forms.Select(choices=QuesModel.CATEGORY_CHOICES, attrs={'class': 'form-control'}),
+            'question': forms.TextInput(attrs={'class': 'form-control'}),
+            'option1': forms.TextInput(attrs={'class': 'form-control'}),
+            'option2': forms.TextInput(attrs={'class': 'form-control'}),
+            'option3': forms.TextInput(attrs={'class': 'form-control'}),
+            'option4': forms.TextInput(attrs={'class': 'form-control'}),
+            'answer': forms.Select(choices=QuesModel.OPTION_CHOICES, attrs={'class': 'form-control'}),
         }
-    

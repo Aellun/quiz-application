@@ -1,53 +1,157 @@
 {% extends 'Quiz/dependencies.html' %}
 
 {% block content %}
+<style>
+    /* General form styling */
+.jumbotron.container {
+    max-width: 1100px; /* Adjust based on your preference */
+    margin: auto; /* Center the form */
+}
 
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.card-body {
+    padding: 20px; /* More padding around the form */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary blue */
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Input field styling */
+.form-control {
+    border-radius: 25px; /* Rounded corners for inputs */
+    border: 1px solid #686c70; /* Light grey border */
+}
+
+.form-control:focus {
+    border-color: #80bdff; /* Highlight focus */
+    outline: 0; /* Remove outline */
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Focus ring effect */
+}
+
+/* Label styling */
+.form-group label {
+    display: block; /* Make labels block-level */
+    margin-bottom: 5px; /* Space below labels */
+    color: #495057; /* Darker text for labels */
+}
+
+/* Placeholder text styling */
+::placeholder { /* Most modern browsers support this */
+    color: #6c757d; /* Grey text */
+    opacity: 1; /* Fully opaque */
+}
+
+/* Change the width of the inputs and textarea */
+input[type="text"], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid #ced4da; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    resize: vertical; /* Allow vertical resizing, not horizontal */
+}
+
+/* Add some hover effects for buttons */
+input[type="submit"]:hover,.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+</style>
 <div class="jumbotron container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card mb-3">
                 <div class="card-body">
                     <h1 class="card-title text-center">ADD QUESTION</h1>
+                    
                     <form action="" method="POST">
+
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="category">Category:</label>
-                            <select class="form-control" id="category" name="category">
-                                <option value="programming">Computer Science</option>
-                                <option value="communication">Communication Skills</option>
-                                <option value="emotion">Emotional intelligennce</option>
-                                <option value="ethics">Ethics</option>
-                                <option value="sales">Customer Service</option>
-                                <!-- Add more categories as needed -->
-                            </select>
+                            {{ form.category.label_tag }}
+                            {{ form.category }}
                         </div>
-                        <!-- End of category field -->
                         <br>
-                        {{ form.question.label_tag }}
-                        <input type="{{ form.question.field.widget.input_type }}" name="{{ form.question.name }}" maxlength="200" class="form-control" id="{{ form.question.id_for_label }}" value="{{ form.question.value }}" required>
+                        <div class="form-group">
+                            {{ form.question.label_tag }}
+                            <input type="{{ form.question.field.widget.input_type }}" name="{{ form.question.name }}" maxlength="200" class="form-control" id="{{ form.question.id_for_label }}" placeholder="Enter the question here" value="{{ form.question.value }}" required>
+                        </div>
                         <br>
-                        {{ form.option1.label_tag }}
-                        <input type="{{ form.option1.field.widget.input_type }}" name="{{ form.option1.name }}" maxlength="200" class="form-control" id="{{ form.option1.id_for_label }}" value="{{ form.option1.value }}" required>
+                        <div class="form-group">
+                            {{ form.option1.label_tag }}
+                            <input type="{{ form.option1.field.widget.input_type }}" name="{{ form.option1.name }}" maxlength="200" class="form-control" id="{{ form.option1.id_for_label }}" placeholder="Enter option 1 here" value="{{ form.option1.value }}" required>
+                        </div>
                         <br>
-                        {{ form.option2.label_tag }}
-                        <input type="{{ form.option2.field.widget.input_type }}" name="{{ form.option2.name }}" maxlength="200" class="form-control" id="{{ form.option2.id_for_label }}" value="{{ form.option2.value }}" required>
+                        <div class="form-group">
+                            {{ form.option2.label_tag }}
+                            <input type="{{ form.option2.field.widget.input_type }}" name="{{ form.option2.name }}" maxlength="200" class="form-control" id="{{ form.option2.id_for_label }}" placeholder="Enter option 2 here" value="{{ form.option2.value }}" required>
+                        </div>
                         <br>
-                        {{ form.option3.label_tag }}
-                        <input type="{{ form.option3.field.widget.input_type }}" name="{{ form.option3.name }}" maxlength="200" class="form-control" id="{{ form.option3.id_for_label }}" value="{{ form.option3.value }}" required>
+                        <div class="form-group">
+                            {{ form.option3.label_tag }}
+                            <input type="{{ form.option3.field.widget.input_type }}" name="{{ form.option3.name }}" maxlength="200" class="form-control" id="{{ form.option3.id_for_label }}" placeholder="Enter option 3 here" value="{{ form.option3.value }}" required>
+                        </div>
                         <br>
-                        {{ form.option4.label_tag }}
-                        <input type="{{ form.option4.field.widget.input_type }}" name="{{ form.option4.name }}" maxlength="200" class="form-control" id="{{ form.option4.id_for_label }}" value="{{ form.option4.value }}" required>
+                        <div class="form-group">
+                            {{ form.option4.label_tag }}
+                            <input type="{{ form.option4.field.widget.input_type }}" name="{{ form.option4.name }}" maxlength="200" class="form-control" id="{{ form.option4.id_for_label }}" placeholder="Enter option 4 here" value="{{ form.option4.value }}" required>
+                        </div>
                         <br>
-                        {{ form.answer.label_tag }}
-                        <input type="{{ form.answer.field.widget.input_type }}" name="{{ form.answer.name }}" maxlength="200" class="form-control" id="{{ form.answer.id_for_label }}" value="{{ form.answer.value }}" required>
+                        <div class="form-group">
+                            {{ form.answer.label_tag }}
+                            {{ form.answer }}
+                        </div>
                         <br>
-                        
                         <input type="submit" name="Submit" class="btn btn-primary btn-block">
+                        
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing functionality for dynamic placeholders
+    var inputs = document.querySelectorAll('input[type="text"]');
+    
+    inputs.forEach(function(input) {
+        var placeholder = "Enter option " + input.id.split("option")[1] + " here";
+        input.placeholder = placeholder;
+        input.addEventListener('input', function() {
+            if (input.value!== '') {
+                input.placeholder = '';
+            } else {
+                input.placeholder = placeholder;
+            }
+        });
+    });
 
+    // New functionality for displaying messages as pop-ups
+    function showMessage(message) {
+        alert(message); // Use alert() for simplicity, or replace with a custom modal
+    }
+
+    // Fetch messages from the DOM (assuming they are rendered as text nodes)
+    const messages = Array.from(document.querySelectorAll('.messages li')).map(li => li.textContent);
+
+    // Show each message as a pop-up
+    messages.forEach(showMessage);
+});
+</script>
 {% endblock %}

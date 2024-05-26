@@ -9,6 +9,7 @@
 
     <form method='post' action='{% url "home" %}'>
         {% csrf_token %}
+        <!-- <input type="hidden" name="category" id="selected-category" value=""> -->
         <input id='selected-category' type='hidden' name="category" value="">
         {% for q in questions %}
         <fieldset>
@@ -47,22 +48,27 @@
     </form>
     {% block script %}
         <script>
-            console.log('hello world');
+            // JavaScript code for handling category selection and timer
             const timer = document.getElementById('displaytimer');
-            const inputtag = document.getElementById('timer');
-
+            const inputTag = document.getElementById('timer');
             let t = 0;
-            const intervalId = setInterval(() => {
-                t += 1;
-                timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
-                inputtag.value = t;
-            }, 1000);
+            let intervalId;
 
-            document.querySelectorAll('input[name="selected-category"]').forEach((radioButton) => {
-                radioButton.addEventListener('click', () => {
-                    const selectedCategory = radioButton.value;
-                    console.log('Selected category:', selectedCategory);
-                    document.getElementById('selected-category').value = selectedCategory;
+            // Function to start the timer
+            const startTimer = () => {
+                intervalId = setInterval(() => {
+                    t += 1;
+                    timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
+                    inputTag.value = t;
+                }, 1000);
+            };
+
+            // Event listener for radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+                radio.addEventListener('click', () => {
+                    if (intervalId === undefined) {
+                        startTimer();
+                    }
                 });
             });
 
