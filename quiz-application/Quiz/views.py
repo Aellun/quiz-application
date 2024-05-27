@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.http import HttpResponse 
-import logging
+import json
 
 # Landing page view
 def landing_page(request):
@@ -84,35 +84,28 @@ def home(request):
         context = {'categories': ['Programming', 'Communication', 'Emotion', 'Ethics', 'Sales']}
         return render(request, 'Quiz/home.html', context)
 
-
-
-
-# View to fetch questions based on category
-# @csrf_exempt
-# Assuming this is the view function for fetching questions based on category
-# Configure logging
-logger = logging.getLogger(__name__)
-
+@csrf_exempt
 def fetch_questions(request):
-    if request.method == 'POST' and 'category' in request.POST:
-        category = request.POST['category']
-        logger.info(f'Retrieving questions for category: {category}')  # Log the category being queried
-        
-        questions = QuesModel.objects.filter(category=category)
-        logger.debug(f'Fetched {len(questions)} questions.')  # Log the number of questions fetched
-        
-        questions_data = [{'question': q.question, 'option1': q.option1, 'option2': q.option2, 'option3': q.option3, 'option4': q.option4} for q in questions]
-        
-        # Include category in the response data
-        response_data = {'category': category, 'questions': questions_data}
-        
-        # Optionally, log the response data before returning it
-        logger.debug(f'Returning response data: {response_data}')
-        
-        return JsonResponse(response_data)
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            category = data.get('category')
+            if category:
+                print(f'Received POST request with category: {category}')
+                questions = QuesModel.objects.filter(category=category)
+                questions_data = [{'question': q.question, 'option1': q.option1, 'option2': q.option2, 'option3': q.option3, 'option4': q.option4} for q in questions]
+                response_data = {'category': category, 'questions': questions_data}
+                print(f'Returning response data: {response_data}')
+                return JsonResponse(response_data)
+            else:
+                print('Category not provided in request data.')
+                return JsonResponse({'error': 'Category not provided'}, status=400)
+        except json.JSONDecodeError:
+            print('Invalid JSON in request body.')
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
     else:
-        logger.error('Invalid request method or missing category parameter.')
-        return JsonResponse({'error': 'Invalid request method or missing category parameter.'})
+        print('Invalid request method.')
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 # Helper function to fetch and render questions by category
 def get_questions_by_category(request, category):
