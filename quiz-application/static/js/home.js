@@ -47,17 +47,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     otherLink.classList.remove('active');
                 }
             });
-
+            
             // Extract category from URL and fetch questions
-            const category = link.getAttribute('href').split('/').slice(-2).join('/');
-            console.log(`Extracted category from URL: ${category}`);
-            if (category) {
-                fetchQuestions(category);
-            } else {
-                console.error('Category is empty.');
-            }
+    //         const category = link.getAttribute('href').split('/').slice(-2).join('/');
+    //         console.log(`Extracted category from URL: ${category}`);
+    //         if (category) {
+    //             fetchQuestions(category);
+    //         } else {
+    //             console.error('Category is empty.');
+    //         }
+    //     });
+    // });
+
+    document.querySelectorAll('.category-link').forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault(); // Prevent navigation
+    
+            const categoryLink = event.target.href.split('/').pop();
+            const form = document.querySelector('#category-form'); // Target the form by its ID
+            const selectedCategoryInput = form.querySelector('#selected-category');
+    
+            selectedCategoryInput.value = categoryLink; // Set the selected category
+            form.style.display = 'block'; // Make the form visible
+            form.submit(); // Submit the form
         });
     });
+    
 
     function fetchQuestions(category) {
         if (loadingIndicator) {

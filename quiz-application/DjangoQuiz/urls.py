@@ -20,6 +20,7 @@ urlpatterns = [
     path('ethics/', ethics_questions, name='ethics'),
     path('programming/', programming_questions, name='Programming'),
     path('dashboard/', dashboard_view, name='dashboard'),
+    path('result/', quiz_result, name='result'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

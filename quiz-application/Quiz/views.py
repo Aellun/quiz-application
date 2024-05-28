@@ -1,15 +1,17 @@
+import logging
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from.forms import addQuestionform
-from.models import QuesModel
-from django.http import JsonResponse
+from .forms import addQuestionform
+from .models import QuesModel
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.http import HttpResponse 
-import json
 from django.views import View
+import json
+
+# Initialize logger
+logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your settings
 
 # Landing page view
 def landing_page(request):
@@ -71,7 +73,6 @@ def logout_page(request):
     logout(request)
     return redirect('/')
 
-
 def home(request):
     if request.method == 'POST':
         # Process POST request
@@ -84,6 +85,7 @@ def home(request):
         print("Rendering home page...")
         context = {'categories': ['Programming', 'Communication', 'Emotion', 'Ethics', 'Sales']}
         return render(request, 'Quiz/home.html', context)
+
 class FetchQuestionsView(View):
     def post(self, request, *args, **kwargs):
         try:
@@ -103,6 +105,7 @@ class FetchQuestionsView(View):
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
         except Exception as e:
+            logger.error("Error fetching questions: %s", str(e))
             return JsonResponse({'error': 'An unknown error occurred'}, status=500)
 
 # Helper function to fetch and render questions by category
@@ -132,4 +135,55 @@ def ethics_questions(request):
     return get_questions_by_category(request, 'ethics')
 
 
+
+logger = logging.getLogger('DjangoQuiz')
+
+def quiz_result(request):
+    if request.method == 'POST':
+        logger.info("Processing POST request for quiz result")
+        selected_category = request.POST.get('category')
+        questions = QuesModel.objects.filter(category=selected_category)
+        score = 0
+        wrong = 0
+        correct = 0
+        total = 0
+
+        for q in questions:
+            total += 1
+            user_answer = request.POST.get(f"question{q.id}")
+            correct_answer = q.answer
+
+            logger.debug("Question: %s", q.question)
+            logger.debug("User answer: %s", user_answer)
+            logger.debug("Correct answer: %s", correct_answer)
+
+            if correct_answer == user_answer:
+                score += 10
+                correct += 1
+            else:
+                wrong += 1
+        
+        percent = score / (total * 10) * 100 if total > 0 else 0
+
+        logger.debug("Score: %s", score)
+        logger.debug("Time taken: %s", request.POST.get('timer'))
+        logger.debug("Correct answers: %s", correct)
+        logger.debug("Incorrect answers: %s", wrong)
+        logger.debug("Percentage: %s", percent)
+        logger.debug("Total questions: %s", total)
+
+        context = {
+            'score': score,
+            'time': request.POST.get('timer'),
+            'correct': correct,
+            'wrong': wrong,
+            'percent': percent,
+            'total': total
+        }
+
+        logger.info("Returning quiz result context")
+        return render(request, 'Quiz/result.html', context)
+    else:
+        logger.warning("Received GET request instead of POST.")
+        return redirect('home')
 

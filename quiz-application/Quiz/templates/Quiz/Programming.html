@@ -7,36 +7,33 @@
 
     <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
 
-    <form method='post' action='{% url "home" %}'>
+    <form method='post' action='{% url "result" %}'>
         {% csrf_token %}
-        <!-- <input type="hidden" name="category" id="selected-category" value=""> -->
-        <input id='selected-category' type='hidden' name="category" value="">
+        <input id='selected-category' type='hidden' name="category" value="{{ selected_category }}">
         {% for q in questions %}
         <fieldset>
             <legend>{{ forloop.counter }}. {{ q.question }}</legend>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option1{{ forloop.counter }}" value="option1" checked>
-                <label class="form-check-label" for="option1{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option1{{ q.id }}" value="option1" checked>
+                <label class="form-check-label" for="option1{{ q.id }}">
                     {{ q.option1 }}
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option2{{ forloop.counter }}" value="option2">
-                <label class="form-check-label" for="option2{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option2{{ q.id }}" value="option2">
+                <label class="form-check-label" for="option2{{ q.id }}">
                     {{ q.option2 }}
                 </label>
             </div>
-
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option3{{ forloop.counter }}" value="option3">
-                <label class="form-check-label" for="option3{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option3{{ q.id }}" value="option3">
+                <label class="form-check-label" for="option3{{ q.id }}">
                     {{ q.option3 }}
                 </label>
             </div>
-
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option4{{ forloop.counter }}" value="option4">
-                <label class="form-check-label" for="option4{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option4{{ q.id }}" value="option4">
+                <label class="form-check-label" for="option4{{ q.id }}">
                     {{ q.option4 }}
                 </label>
             </div>

@@ -7,35 +7,34 @@
 
     <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
 
-    <form method='post' action='{% url "home" %}'>
+    <form method='post' action='{% url "result" %}'>
         {% csrf_token %}
-        <!-- <input type="hidden" name="category" id="selected-category" value=""> -->
         <input id='selected-category' type='hidden' name="category" value="">
         {% for q in questions %}
         <fieldset>
             <legend>{{ forloop.counter }}. {{ q.question }}</legend>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option1{{ forloop.counter }}" value="option1" checked>
+                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option1{{ forloop.counter }}" value="option1" checked>
                 <label class="form-check-label" for="option1{{ forloop.counter }}">
                     {{ q.option1 }}
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option2{{ forloop.counter }}" value="option2">
+                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option2{{ forloop.counter }}" value="option2">
                 <label class="form-check-label" for="option2{{ forloop.counter }}">
                     {{ q.option2 }}
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option3{{ forloop.counter }}" value="option3">
+                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option3{{ forloop.counter }}" value="option3">
                 <label class="form-check-label" for="option3{{ forloop.counter }}">
                     {{ q.option3 }}
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{ q.question }}" id="option4{{ forloop.counter }}" value="option4">
+                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option4{{ forloop.counter }}" value="option4">
                 <label class="form-check-label" for="option4{{ forloop.counter }}">
                     {{ q.option4 }}
                 </label>
