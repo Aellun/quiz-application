@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.http import HttpResponse 
 import json
+from django.views import View
 
 # Landing page view
 def landing_page(request):
@@ -83,35 +84,36 @@ def home(request):
         print("Rendering home page...")
         context = {'categories': ['Programming', 'Communication', 'Emotion', 'Ethics', 'Sales']}
         return render(request, 'Quiz/home.html', context)
-
-@csrf_exempt
-def fetch_questions(request):
-    if request.method == 'POST':
+class FetchQuestionsView(View):
+    def post(self, request, *args, **kwargs):
         try:
             data = json.loads(request.body)
             category = data.get('category')
             if category:
-                print(f'Received POST request with category: {category}')
-                questions = QuesModel.objects.filter(category=category)
+                # Trim the trailing slash from the category
+                trimmed_category = category.rstrip('/')
+                
+                # Query the database using the trimmed category
+                questions = QuesModel.objects.filter(category=trimmed_category)
                 questions_data = [{'question': q.question, 'option1': q.option1, 'option2': q.option2, 'option3': q.option3, 'option4': q.option4} for q in questions]
-                response_data = {'category': category, 'questions': questions_data}
-                print(f'Returning response data: {response_data}')
+                response_data = {'category': trimmed_category, 'questions': questions_data}
                 return JsonResponse(response_data)
             else:
-                print('Category not provided in request data.')
                 return JsonResponse({'error': 'Category not provided'}, status=400)
         except json.JSONDecodeError:
-            print('Invalid JSON in request body.')
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
-    else:
-        print('Invalid request method.')
-        return JsonResponse({'error': 'Invalid request method'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': 'An unknown error occurred'}, status=500)
 
 # Helper function to fetch and render questions by category
 def get_questions_by_category(request, category):
-    questions = QuesModel.objects.filter(category=category)
+    # Trim the trailing slash from the category
+    trimmed_category = category.rstrip('/')
+    
+    # Query the database using the trimmed category
+    questions = QuesModel.objects.filter(category=trimmed_category)
     context = {'questions': questions}
-    return render(request, f'Quiz/{category.lower().replace(" ", "_")}.html', context)
+    return render(request, f'Quiz/{trimmed_category.lower().replace(" ", "_")}.html', context)
 
 # Views for specific categories of questions
 def communication_skills_questions(request):
@@ -128,5 +130,6 @@ def programming_questions(request):
 
 def ethics_questions(request):
     return get_questions_by_category(request, 'ethics')
+
 
 
