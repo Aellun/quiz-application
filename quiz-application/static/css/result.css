@@ -1,0 +1,56 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card-columns {
+    padding: 10px;
+    margin: 20px auto;
+}
+
+.card {
+    width: 100%;
+    border: 5px solid black;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 2.1rem;
+    margin-bottom: 10px;
+}
+
+.card h5 {
+    margin-top: 20px;
+    font-size: 1.25rem;
+    color: #007bff;
+}
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
