@@ -7,35 +7,34 @@
 
     <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
 
-    <form method='post' action='{% url "result" %}'>
+    <form method='post' action='{% url "result" %}' id="quiz-form">
         {% csrf_token %}
-        <input id='selected-category' type='hidden' name="category" value="">
+        <input id='submission-token' type='hidden' name="submission_token" value="{{ submission_token }}">
+        <input id='selected-category' type='hidden' name="category" value="{{ selected_category }}">
         {% for q in questions %}
         <fieldset>
             <legend>{{ forloop.counter }}. {{ q.question }}</legend>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option1{{ forloop.counter }}" value="option1" checked>
-                <label class="form-check-label" for="option1{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option1{{ q.id }}" value="option1" checked>
+                <label class="form-check-label" for="option1{{ q.id }}">
                     {{ q.option1 }}
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option2{{ forloop.counter }}" value="option2">
-                <label class="form-check-label" for="option2{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option2{{ q.id }}" value="option2">
+                <label class="form-check-label" for="option2{{ q.id }}">
                     {{ q.option2 }}
                 </label>
             </div>
-
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option3{{ forloop.counter }}" value="option3">
-                <label class="form-check-label" for="option3{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option3{{ q.id }}" value="option3">
+                <label class="form-check-label" for="option3{{ q.id }}">
                     {{ q.option3 }}
                 </label>
             </div>
-
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="question{{ forloop.counter }}" id="option4{{ forloop.counter }}" value="option4">
-                <label class="form-check-label" for="option4{{ forloop.counter }}">
+                <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option4{{ q.id }}" value="option4">
+                <label class="form-check-label" for="option4{{ q.id }}">
                     {{ q.option4 }}
                 </label>
             </div>
@@ -46,36 +45,42 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     {% block script %}
-        <script>
-            // JavaScript code for handling category selection and timer
-            const timer = document.getElementById('displaytimer');
-            const inputTag = document.getElementById('timer');
-            let t = 0;
-            let intervalId;
+    <script>
+        // JavaScript code for handling category selection and timer
+        const timer = document.getElementById('displaytimer');
+        const inputTag = document.getElementById('timer');
+        let t = 0;
+        let intervalId;
 
-            // Function to start the timer
-            const startTimer = () => {
-                intervalId = setInterval(() => {
-                    t += 1;
-                    timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
-                    inputTag.value = t;
-                }, 1000);
-            };
+        // Function to start the timer
+        const startTimer = () => {
+            intervalId = setInterval(() => {
+                t += 1;
+                timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
+                inputTag.value = t;
+            }, 1000);
+        };
 
-            // Event listener for radio buttons
-            document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-                radio.addEventListener('click', () => {
-                    if (intervalId === undefined) {
-                        startTimer();
-                    }
-                });
+        // Event listener for radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+            radio.addEventListener('click', () => {
+                if (!intervalId) {
+                    startTimer();
+                }
             });
+        });
 
-            // Clear interval on form submission to prevent timer from continuing after submission
-            document.querySelector('form').addEventListener('submit', () => {
+        // Prevent multiple form submissions
+        const form = document.getElementById('quiz-form');
+        form.addEventListener('submit', (event) => {
+            if (form.dataset.submitted === "true") {
+                event.preventDefault();
+            } else {
+                form.dataset.submitted = "true";
                 clearInterval(intervalId);
-            });
-        </script>
+            }
+        });
+    </script>
     {% endblock script %}
 </div>
 {% endblock %}

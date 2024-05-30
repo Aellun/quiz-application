@@ -136,13 +136,23 @@ def ethics_questions(request):
 
 
 
-logger = logging.getLogger('DjangoQuiz')
 
 def quiz_result(request):
     if request.method == 'POST':
-        logger.info("Processing POST request for quiz result")
-        selected_category = request.POST.get('category')
-        questions = QuesModel.objects.filter(category=selected_category)
+        # Log all submitted data
+        logger.info("Submitted data: %s", request.POST)
+
+        # Extract question IDs from POST data keys that start with 'question'
+        question_ids = [key[8:] for key in request.POST.keys() if key.startswith('question')]
+
+        # Fetch questions based on extracted IDs
+        questions = QuesModel.objects.filter(id__in=question_ids)
+        logger.debug("Fetched questions: %s", questions)
+
+        if not questions.exists():
+            logger.error("No questions found for the provided IDs.")
+            return redirect('home')
+
         score = 0
         wrong = 0
         correct = 0
@@ -153,24 +163,13 @@ def quiz_result(request):
             user_answer = request.POST.get(f"question{q.id}")
             correct_answer = q.answer
 
-            logger.debug("Question: %s", q.question)
-            logger.debug("User answer: %s", user_answer)
-            logger.debug("Correct answer: %s", correct_answer)
-
             if correct_answer == user_answer:
                 score += 10
                 correct += 1
             else:
                 wrong += 1
-        
-        percent = score / (total * 10) * 100 if total > 0 else 0
 
-        logger.debug("Score: %s", score)
-        logger.debug("Time taken: %s", request.POST.get('timer'))
-        logger.debug("Correct answers: %s", correct)
-        logger.debug("Incorrect answers: %s", wrong)
-        logger.debug("Percentage: %s", percent)
-        logger.debug("Total questions: %s", total)
+        percent = score / (total * 10) * 100 if total > 0 else 0
 
         context = {
             'score': score,
@@ -181,9 +180,6 @@ def quiz_result(request):
             'total': total
         }
 
-        logger.info("Returning quiz result context")
         return render(request, 'Quiz/result.html', context)
     else:
-        logger.warning("Received GET request instead of POST.")
         return redirect('home')
-
