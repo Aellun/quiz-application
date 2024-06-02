@@ -3,84 +3,96 @@
 {% block content %}
 {% load static %}
 <div class="container">
-    <h1>Welcome to LearnHub</h1>
+    <h1 class="text-center my-4">Welcome to LearnHub</h1>
+    <p class="text-center mb-4">Test your knowledge with our quiz. Select the best answer for each question.</p>
 
-    <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
+    <div class="alert alert-info text-right" id="displaytimer"><b>Timer: 0 seconds</b></div>
 
-    <form method='post' action='{% url "result" %}' id="quiz-form">
+    {% if messages %}
+    <div class="alert alert-danger">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'result' %}">
         {% csrf_token %}
-        <input id='submission-token' type='hidden' name="submission_token" value="{{ submission_token }}">
-        <input id='selected-category' type='hidden' name="category" value="{{ selected_category }}">
+        <input id="selected-category" type="hidden" name="category" value="{{ selected_category }}">
+
         {% for q in questions %}
-        <fieldset>
+        <fieldset class="mb-4">
             <legend>{{ forloop.counter }}. {{ q.question }}</legend>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option1{{ q.id }}" value="option1" checked>
-                <label class="form-check-label" for="option1{{ q.id }}">
+                <label class="form-check-label" for="option1{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
                     {{ q.option1 }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option2{{ q.id }}" value="option2">
-                <label class="form-check-label" for="option2{{ q.id }}">
+                <label class="form-check-label" for="option2{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
                     {{ q.option2 }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option3{{ q.id }}" value="option3">
-                <label class="form-check-label" for="option3{{ q.id }}">
+                <label class="form-check-label" for="option3{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
                     {{ q.option3 }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option4{{ q.id }}" value="option4">
-                <label class="form-check-label" for="option4{{ q.id }}">
+                <label class="form-check-label" for="option4{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
                     {{ q.option4 }}
                 </label>
             </div>
         </fieldset>
         {% endfor %}
-        <input id='timer' type='hidden' name="timer" value="">
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        
+        <input id="timer" type="hidden" name="timer" value="">
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
     </form>
+
     {% block script %}
-    <script>
-        // JavaScript code for handling category selection and timer
-        const timer = document.getElementById('displaytimer');
-        const inputTag = document.getElementById('timer');
-        let t = 0;
-        let intervalId;
+        <script>
+            // JavaScript code for handling category selection and timer
+            const timer = document.getElementById('displaytimer');
+            const inputTag = document.getElementById('timer');
+            let t = 0;
+            let intervalId;
 
-        // Function to start the timer
-        const startTimer = () => {
-            intervalId = setInterval(() => {
-                t += 1;
-                timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
-                inputTag.value = t;
-            }, 1000);
-        };
+            // Function to start the timer
+            const startTimer = () => {
+                intervalId = setInterval(() => {
+                    t += 1;
+                    timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
+                    inputTag.value = t;
+                }, 1000);
+            };
 
-        // Event listener for radio buttons
-        document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-            radio.addEventListener('click', () => {
-                if (!intervalId) {
-                    startTimer();
-                }
+            // Start the timer when the first radio button is clicked
+            document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+                radio.addEventListener('click', () => {
+                    if (!intervalId) {
+                        startTimer();
+                    }
+                });
             });
-        });
 
-        // Prevent multiple form submissions
-        const form = document.getElementById('quiz-form');
-        form.addEventListener('submit', (event) => {
-            if (form.dataset.submitted === "true") {
-                event.preventDefault();
-            } else {
-                form.dataset.submitted = "true";
+            // Clear interval on form submission to prevent timer from continuing after submission
+            document.querySelector('form').addEventListener('submit', () => {
                 clearInterval(intervalId);
-            }
-        });
-    </script>
+            });
+
+            // Initialize tooltips
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
     {% endblock script %}
 </div>
 {% endblock %}

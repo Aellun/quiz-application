@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import addQuestionform
+from .forms import createuserform
 from .models import QuesModel
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -39,18 +40,19 @@ def login_page(request):
 # View for user registration
 def register_page(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('home')  # Redirect to the homepage if the user is already authenticated
     else:
-        form = UserCreationForm()
+        form = createuserform()
         if request.method == 'POST':
-            form = UserCreationForm(request.POST)
+            form = createuserform(request.POST)
             if form.is_valid():
-                user = form.save()
-                login(request, user)
-                return redirect('home')
+                form.save()  # Save the new user
+                messages.success(request, "Registration successful! Please log in.")
+                return redirect('login')  # Redirect to the login page
         context = {'form': form}
         return render(request, 'Quiz/register.html', context)
 
+    
 # View to add a new question
 def add_question(request):
     if request.user.is_staff:
@@ -169,7 +171,8 @@ def quiz_result(request):
             else:
                 wrong += 1
 
-        percent = score / (total * 10) * 100 if total > 0 else 0
+        # Round off the percent to the nearest whole number
+        percent = round(score / (total * 10) * 100) if total > 0 else 0
 
         context = {
             'score': score,
