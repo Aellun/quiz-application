@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from Quiz.views import FetchQuestionsView
+# from Quiz.views import admin_user_list, edit_user, delete_user
 
 urlpatterns = [
     path('', landing_page, name='landingPage'),  # Direct root URL to landing page
@@ -21,6 +22,9 @@ urlpatterns = [
     path('programming/', programming_questions, name='Programming'),
     path('dashboard/', dashboard_view, name='dashboard'),
     path('result/', quiz_result, name='result'),
+    path('admin_user_list/', admin_user_list, name='admin_user_list'),
+    path('admin/users/edit/<int:user_id>/', edit_user, name='edit_user'),
+    path('admin/users/delete/<int:user_id>/', delete_user, name='delete_user'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

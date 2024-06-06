@@ -1,5 +1,5 @@
 import logging
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -10,6 +10,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 import json
+from django.contrib.auth.models import User
 
 # Initialize logger
 logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your settings
@@ -186,3 +187,30 @@ def quiz_result(request):
         return render(request, 'Quiz/result.html', context)
     else:
         return redirect('home')
+
+
+# Fetch users
+def admin_user_list(request):
+    users = User.objects.all()
+    return render(request, 'Quiz/admin_user_list.html', {'users': users})
+
+# Edit user (using POST to update user details)
+@csrf_exempt
+def edit_user(request, user_id):
+    if request.method == 'POST':
+        user = get_object_or_404(User, pk=user_id)
+        user.first_name = request.POST.get('first_name', user.first_name)
+        user.last_name = request.POST.get('last_name', user.last_name)
+        user.email = request.POST.get('email', user.email)
+        user.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
+
+# Delete user
+@csrf_exempt
+def delete_user(request, user_id):
+    if request.method == 'POST':
+        user = get_object_or_404(User, pk=user_id)
+        user.delete()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
