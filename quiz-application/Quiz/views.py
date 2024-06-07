@@ -190,21 +190,25 @@ def quiz_result(request):
 
 
 # Fetch users
-def admin_user_list(request):
+def user_management(request):
     users = User.objects.all()
-    return render(request, 'Quiz/admin_user_list.html', {'users': users})
+    return render(request, 'Quiz/user_management.html', {'users': users})
+
 
 # Edit user (using POST to update user details)
 @csrf_exempt
 def edit_user(request, user_id):
     if request.method == 'POST':
-        user = get_object_or_404(User, pk=user_id)
-        user.first_name = request.POST.get('first_name', user.first_name)
-        user.last_name = request.POST.get('last_name', user.last_name)
-        user.email = request.POST.get('email', user.email)
-        user.save()
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+        try:
+            user = get_object_or_404(User, pk=user_id)
+            user.first_name = request.POST.get('first_name', user.first_name)
+            user.last_name = request.POST.get('last_name', user.last_name)
+            user.email = request.POST.get('email', user.email)
+            user.save()
+            return JsonResponse({'success': True, 'message': 'User details updated successfully.'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)})
+    return JsonResponse({'success': False, 'message': 'Invalid request method.'})
 
 # Delete user
 @csrf_exempt

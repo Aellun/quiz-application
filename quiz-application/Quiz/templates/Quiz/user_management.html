@@ -1,6 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'Quiz/dependencies.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/user_management.css' %}">
+
 <div class="dashboard-container">
     <h2>Manage Users</h2>
     <table>
