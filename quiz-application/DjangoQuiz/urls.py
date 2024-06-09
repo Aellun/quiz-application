@@ -8,7 +8,7 @@ from Quiz.views import (
     landing_page, add_question, login_page, logout_page, register_page, home,
     FetchQuestionsView, communication_skills_questions, emotional_intelligence_questions,
     sales_service_questions, ethics_questions, programming_questions, dashboard_view,
-    quiz_result, user_management, edit_user, delete_user
+    quiz_result, user_management, edit_user, delete_user,course_list,
 )
 
 
@@ -30,5 +30,6 @@ urlpatterns = [
     path('user_management/', login_required(user_management), name='user_management'),
     path('admin/users/edit/<int:user_id>/', login_required(edit_user), name='edit_user'),
     path('admin/users/delete/<int:user_id>/', login_required(delete_user), name='delete_user'),
+    path('course_list/', login_required(course_list), name='course_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

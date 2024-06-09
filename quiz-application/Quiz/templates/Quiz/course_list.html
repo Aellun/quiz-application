@@ -1,0 +1,74 @@
+{% extends 'Quiz/dependencies.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+.course-listing {
+    margin: 2rem;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.course-listing h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.course-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.75rem;
+}
+
+.course-card p {
+    color: #666;
+    font-size: 1rem;
+}
+
+
+</style>
+<div class="course-listing">
+    <h1>Courses</h1>
+    <div class="course-card">
+        <h2>Computer Science</h2>
+        <p>Learn the fundamentals of computer science, programming, and software development.</p>
+        <a href="https://www.edx.org/learn/computer-science" target="_blank">Explore edX Computer Science Courses</a>
+    </div>
+    
+    <div class="course-card">
+        <h2>Communication Skills</h2>
+        <p>Enhance your communication skills for personal and professional growth.</p>
+        <a href="https://www.coursera.org/courses?query=communication%20skills" target="_blank">Discover Coursera Communication Skills Courses</a>
+    </div>
+    
+    <div class="course-card">
+        <h2>Emotional Intelligence</h2>
+        <p>Understand and manage your emotions to improve your interpersonal relationships.</p>
+        <a href="https://www.linkedin.com/learning/topics/emotional-intelligence" target="_blank">Browse LinkedIn Learning Emotional Intelligence Courses</a>
+    </div>
+    
+    <div class="course-card">
+        <h2>Ethics</h2>
+        <p>Explore the principles of ethics and their application in various fields.</p>
+        <a href="https://www.udemy.com/courses/search/?q=ethics" target="_blank">Check out Udemy Ethics Courses</a>
+    </div>
+    
+    <div class="course-card">
+        <h2>Customer Service</h2>
+        <p>Develop skills to provide excellent customer service and enhance customer satisfaction.</p>
+        <a href="https://www.skillshare.com/browse/customer-service" target="_blank">View Skillshare Customer Service Courses</a>
+    </div>
+    
+</div>
+{% endblock %}

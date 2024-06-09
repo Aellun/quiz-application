@@ -194,6 +194,9 @@ def user_management(request):
     users = User.objects.all()
     return render(request, 'Quiz/user_management.html', {'users': users})
 
+def course_list(request):
+    return render(request, 'Quiz/course_list.html')
+
 
 # Edit user (using POST to update user details)
 @csrf_exempt
