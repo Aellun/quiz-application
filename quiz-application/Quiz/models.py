@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class QuesModel(models.Model):
     CATEGORY_CHOICES = [
@@ -28,3 +29,12 @@ class QuesModel(models.Model):
     
     def __str__(self):
         return self.question
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    total_score = models.IntegerField(default=0)
+    num_tests_taken = models.IntegerField(default=0)
+
+    def calculate_average_score(self):
+        return self.total_score / self.num_tests_taken if self.num_tests_taken else 0

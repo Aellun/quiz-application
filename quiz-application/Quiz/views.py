@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 import json
 from django.contrib.auth.models import User
+from.models import UserProfile
 
 # Initialize logger
 logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your settings
@@ -221,3 +222,13 @@ def delete_user(request, user_id):
         user.delete()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False})
+
+
+
+def user_list(request):
+    users = UserProfile.objects.all()
+    return render(request, 'Quiz/user_list.html', {'users': users})
+        
+def user_detail(request, user_id):
+            user_profile = get_object_or_404(UserProfile, pk=user_id)
+            return render(request, 'Quiz/user_detail.html', {'user_profile': user_profile})
