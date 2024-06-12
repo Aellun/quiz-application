@@ -33,10 +33,12 @@ def login_page(request):
             if form.is_valid():
                 user = form.get_user()
                 login(request, user)
+                # Ensure UserProfile exists
+                UserProfile.objects.get_or_create(user=user)
                 return redirect('home')
             else:
                 messages.error(request, "Invalid username or password.")
-        context = {}
+        context = {'form': AuthenticationForm()}
         return render(request, 'Quiz/login.html', context)
 
 # View for user registration

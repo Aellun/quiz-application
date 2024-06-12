@@ -8,22 +8,69 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h2 {
+            color: #007bff;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
             text-align: left;
         }
         th {
-            background-color: #f4f4f4;
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
         }
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e9ecef;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            table, th, td {
+                display: block;
+            }
+            th, td {
+                padding: 10px;
+                text-align: right;
+            }
+            th {
+                background-color: transparent;
+                color: #333;
+                text-transform: none;
+            }
+            td {
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+                position: relative;
+                padding-left: 50%;
+            }
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
         }
     </style>
 </head>
@@ -43,10 +90,10 @@
         <tbody>
             {% for user_profile in users %}
                 <tr>
-                    <td>{{ user_profile.user.username }}</td>
-                    <td>{{ user_profile.calculate_average_score }}</td>
-                    <td>{{ user_profile.num_tests_taken }}</td>
-                    <td><a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">Details</a></td>
+                    <td data-label="Username">{{ user_profile.user.username }}</td>
+                    <td data-label="Average Score">{{ user_profile.calculate_average_score }}</td>
+                    <td data-label="Number of Tests Taken">{{ user_profile.num_tests_taken }}</td>
+                    <td data-label="Actions"><a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">Details</a></td>
                 </tr>
             {% endfor %}
         </tbody>

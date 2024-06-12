@@ -1,4 +1,8 @@
 {% extends 'Quiz/dependencies.html' %}
+
+{% block title %}User Details and Quiz Attempts{% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,25 +13,37 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
         }
         h2 {
-            color: #333;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
             text-align: left;
         }
         th {
-            background-color: #f4f4f4;
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
         }
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e9ecef;
         }
     </style>
 </head>
@@ -61,3 +77,4 @@
 
 </body>
 </html>
+{% endblock %}
