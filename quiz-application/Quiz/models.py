@@ -31,6 +31,14 @@ class QuesModel(models.Model):
         return self.question
 
 
+class QuizAttempt(models.Model):
+    user_profile = models.ForeignKey('UserProfile', on_delete=models.CASCADE, related_name='quizzes_taken')
+    category = models.CharField(max_length=100)
+    score = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.category} - {self.score}"
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     total_score = models.IntegerField(default=0)

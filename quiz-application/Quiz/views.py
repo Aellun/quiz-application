@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 import json
 from django.contrib.auth.models import User
-from.models import UserProfile
+from.models import UserProfile, QuizAttempt
 
 # Initialize logger
 logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your settings
@@ -143,15 +143,28 @@ def ethics_questions(request):
 
 
 
+
+# views.py
+def quiz_view(request, category):
+    questions = QuesModel.objects.filter(category=category)
+    if not questions.exists():
+        logger.warning("No questions found for category %s", category)
+    else:
+        logger.info("Fetched %d questions for category %s", questions.count(), category)
+    context = {
+        'questions': questions,
+        'selected_category': category,
+    }
+    return render(request, f'Quiz/{category.lower()}.html', context)
+
 def quiz_result(request):
     if request.method == 'POST':
-        # Log all submitted data
         logger.info("Submitted data: %s", request.POST)
 
-        # Extract question IDs from POST data keys that start with 'question'
-        question_ids = [key[8:] for key in request.POST.keys() if key.startswith('question')]
+        category = request.POST.get('category', 'Unknown')
+        logger.info("Category: %s", category)
 
-        # Fetch questions based on extracted IDs
+        question_ids = [key[8:] for key in request.POST.keys() if key.startswith('question')]
         questions = QuesModel.objects.filter(id__in=question_ids)
         logger.debug("Fetched questions: %s", questions)
 
@@ -175,8 +188,18 @@ def quiz_result(request):
             else:
                 wrong += 1
 
-        # Round off the percent to the nearest whole number
         percent = round(score / (total * 10) * 100) if total > 0 else 0
+
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.total_score += score
+        user_profile.num_tests_taken += 1
+        user_profile.save()
+
+        QuizAttempt.objects.create(
+            user_profile=user_profile,
+            category=category,
+            score=score
+        )
 
         context = {
             'score': score,
@@ -190,6 +213,13 @@ def quiz_result(request):
         return render(request, 'Quiz/result.html', context)
     else:
         return redirect('home')
+
+def create_quiz_attempt(user_profile, category, score):
+    QuizAttempt.objects.create(
+        user_profile=user_profile,
+        category=category,
+        score=score
+    )
 
 
 # Fetch users
@@ -233,4 +263,9 @@ def user_list(request):
         
 def user_detail(request, user_id):
             user_profile = get_object_or_404(UserProfile, pk=user_id)
+            quizzes_taken = user_profile.quizzes_taken.all()
+
+            # Debugging: Print quiz attempts to the console
+            for quiz in quizzes_taken:
+                print(f"Category: {quiz.category}, Score: {quiz.score}")
             return render(request, 'Quiz/user_detail.html', {'user_profile': user_profile})

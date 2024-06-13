@@ -49,32 +49,29 @@
 </head>
 <body>
 
-<section aria-labelledby="user-details">
-    <h2 id="user-details">User Details</h2>
-    <p>Average Score: {{ user_profile.calculate_average_score }}</p>
-    <p>Number of Tests Taken: {{ user_profile.num_tests_taken }}</p>
-</section>
-
-<section aria-labelledby="quiz-attempts">
-    <h2 id="quiz-attempts">Quiz Attempts</h2>
-    <table role="table">
-        <thead>
-            <tr>
-                <th scope="col">Category</th>
-                <th scope="col">Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for quiz in user_profile.quizzes_taken.all %}
+    <section aria-labelledby="user-details">
+        <h2 id="user-details">User Details</h2>
+        <p>Average Score: {{ user_profile.calculate_average_score }}</p>
+        <p>Number of Tests Taken: {{ user_profile.num_tests_taken }}</p>
+    </section>
+    
+    <section aria-labelledby="quiz-attempts">
+        <h2 id="quiz-attempts">Quiz Attempts</h2>
+        <table role="table">
+            <thead>
                 <tr>
-                    <td>{{ quiz.category }}</td>
-                    <td>{{ quiz.score }}</td>
+                    <th scope="col">Category</th>
+                    <th scope="col">Score</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</section>
-
-</body>
-</html>
-{% endblock %}
+            </thead>
+            <tbody>
+                {% for quiz in user_profile.quizzes_taken.all %}
+                    <tr>
+                        <td>{{ quiz.category }}</td>
+                        <td>{{ quiz.score }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    {% endblock %}

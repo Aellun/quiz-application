@@ -3,8 +3,8 @@
 {% block content %}
 {% load static %}
 <div class="container">
-    <h1 class="text-center my-4">Welcome to LearnHub</h1>
-    <p class="text-center mb-4">Test your knowledge with our quiz. Select the best answer for each question.</p>
+    <h1 class="text-center my-4">Programming Quiz</h1>
+    <p class="text-center mb-4">Select the best answer for each question.</p>
 
     <div class="alert alert-info text-right" id="displaytimer"><b>Timer: 0 seconds</b></div>
 
@@ -59,13 +59,11 @@
 
     {% block script %}
         <script>
-            // JavaScript code for handling category selection and timer
             const timer = document.getElementById('displaytimer');
             const inputTag = document.getElementById('timer');
             let t = 0;
             let intervalId;
 
-            // Function to start the timer
             const startTimer = () => {
                 intervalId = setInterval(() => {
                     t += 1;
@@ -74,7 +72,6 @@
                 }, 1000);
             };
 
-            // Start the timer when the first radio button is clicked
             document.querySelectorAll('input[type="radio"]').forEach((radio) => {
                 radio.addEventListener('click', () => {
                     if (!intervalId) {
@@ -83,12 +80,10 @@
                 });
             });
 
-            // Clear interval on form submission to prevent timer from continuing after submission
             document.querySelector('form').addEventListener('submit', () => {
                 clearInterval(intervalId);
             });
 
-            // Initialize tooltips
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });

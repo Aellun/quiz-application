@@ -1,3 +1,5 @@
+{% extends 'Quiz/dependencies.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,29 +78,27 @@
 </head>
 <body>
 
-<section aria-labelledby="user-list">
-    <h2 id="user-list">User List</h2>
-    <table role="table">
-        <thead>
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Average Score</th>
-                <th scope="col">Number of Tests Taken</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user_profile in users %}
+    <section aria-labelledby="user-list">
+        <h2 id="user-list">User List</h2>
+        <table role="table">
+            <thead>
                 <tr>
-                    <td data-label="Username">{{ user_profile.user.username }}</td>
-                    <td data-label="Average Score">{{ user_profile.calculate_average_score }}</td>
-                    <td data-label="Number of Tests Taken">{{ user_profile.num_tests_taken }}</td>
-                    <td data-label="Actions"><a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">Details</a></td>
+                    <th scope="col">Username</th>
+                    <th scope="col">Average Score</th>
+                    <th scope="col">Number of Tests Taken</th>
+                    <th scope="col">Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</section>
-
-</body>
-</html>
+            </thead>
+            <tbody>
+                {% for user_profile in users %}
+                    <tr>
+                        <td>{{ user_profile.user.username }}</td>
+                        <td>{{ user_profile.calculate_average_score }}</td>
+                        <td>{{ user_profile.num_tests_taken }}</td>
+                        <td><a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">Details</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    {% endblock %}
