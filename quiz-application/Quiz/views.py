@@ -12,6 +12,8 @@ from django.views import View
 import json
 from django.contrib.auth.models import User
 from.models import UserProfile, QuizAttempt
+from datetime import timedelta
+from django.utils import timezone
 
 # Initialize logger
 logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your settings
@@ -269,3 +271,35 @@ def user_detail(request, user_id):
             for quiz in quizzes_taken:
                 print(f"Category: {quiz.category}, Score: {quiz.score}")
             return render(request, 'Quiz/user_detail.html', {'user_profile': user_profile})
+
+
+def stats(request):
+    try:
+        # Active Users: Count of users who have logged in within the last 30 days
+        active_users = User.objects.filter(last_login__gte=timezone.now() - timedelta(days=30)).count()
+
+        # New Signups: Count of users who signed up within the last 30 days
+        new_signups = User.objects.filter(date_joined__gte=timezone.now() - timedelta(days=30)).count()
+
+        # Courses Available: Count of courses available (replace with your actual model)
+        courses_available = Course.objects.count()
+
+        # Quizzes Taken: Count of all quizzes taken
+        quizzes_taken = QuizAttempt.objects.count()
+
+        context = {
+            'active_users': active_users,
+            'new_signups': new_signups,
+            'courses_available': courses_available,
+            'quizzes_taken': quizzes_taken
+        }
+
+        # Log the context for debugging
+        logger.info("Stats context: %s", context)
+
+        return render(request, 'Quiz/home.html', context)
+
+    except Exception as e:
+        logger.error("Error in stats view: %s", str(e))
+        # Handle errors gracefully, e.g., return an error page or redirect
+        return render(request, 'Quiz/error.html', {'error_message': 'An error occurred'})
