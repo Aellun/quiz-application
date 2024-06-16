@@ -1,123 +1,112 @@
 {% extends 'Quiz/dependencies.html' %}
 
 {% block content %}
-
-<div class="sidebar" id="mySidebar">
-    <ul>
-        <li>
-            <a href="{% url 'quiz_view' 'programming' %}" class="category-link">
-                <ion-icon name="code-outline"></ion-icon> Computer Science
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'quiz_view' 'communication' %}" class="category-link">
-                <ion-icon name="chatbubble-outline"></ion-icon> Communication Skills
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'quiz_view' 'emotion' %}" class="category-link">
-                <ion-icon name="heart-outline"></ion-icon> Emotional Intelligence
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'quiz_view' 'ethics' %}" class="category-link">
-                <ion-icon name="compass-outline"></ion-icon> Ethics
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'quiz_view' 'Sales' %}" class="category-link">
-                <ion-icon name="briefcase-outline"></ion-icon> Customer Service
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div id="main">
-    <div class="main-content">
-        <div id="content-area">
-            <!-- Dashboard Content -->
-            <div class="dashboard-container">
-                <div class="card">
-                    <div class="icon"><ion-icon name="analytics-outline"></ion-icon></div>
-                    <h3>Analytics</h3>
-                    <p>Get detailed insights and reports.</p>
-                </div>
-                <div class="card">
-                    <a href="{% url 'user_management' %}" class="card-link">
-                        <div class="icon"><ion-icon name="people-outline"></ion-icon></div>
-                        <h3>Users</h3>
-                        <p>Manage your users and their activities.</p>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="{% url 'course_list' %}" class="card-link">
-                    <div class="icon"><ion-icon name="book-outline"></ion-icon></div>
-                    <h3>Courses</h3>
-                    <p>View and manage your courses.</p>
-                </a>
-                </div>
-                <div class="card">
-                    <a href="{% url 'user_list' %}" class="card-link">
-                    <div class="icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
-                    <h3>Statistics</h3>
-                    <p>View performance statistics.</p>
-                </a>
-                </div>
-            </div>
-            <div class="dashboard-container">
-                <h2>Statistics</h2>
-                <div class="statistics">
-                    <div class="stat">
-                        <h3>{{ active_users }}</h3>
-                        <p>Active Users</p>
-                    </div>
-                    <div class="stat">
-                        <h3>{{ new_signups }}</h3>
-                        <p>New Signups</p>
-                    </div>
-                    <div class="stat">
-                        <h3>{{ courses_available }}</h3>
-                        <p>Courses Available</p>
-                    </div>
-                    <div class="stat">
-                        <h3>{{ quizzes_taken }}</h3>
-                        <p>Quizzes Taken</p>
-                    </div>
-                </div>
-            </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="loading-indicator" style="display:none;"><p>Loading...</p></div>
-</div>
-
-<form method="post" action="{% url 'fetch_questions' %}" id="category-form" style="display:none;">
-    {% csrf_token %}
-</form>
-
 {% load static %}
 <!-- Include the Ionicons script -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="{% static 'js/home.js' %}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.2/collection/components/icon/icon.min.css">
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'DjangoQuiz/css/home.css' %}">
 
-<div style="background-image: url('{{ STATIC_URL }}images/learn2.jpg')"></div>
+<body>
+    <div id="background-image">
+        <img src="{% static 'DjangoQuiz/images/main.png' %}" alt="Image">
+    </div>
+
+    <div class="sidebar" id="mySidebar">
+        <ul>
+            <li>
+                <a href="{% url 'quiz_view' 'programming' %}" class="category-link">
+                    <ion-icon name="code-outline"></ion-icon> Computer Science
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'quiz_view' 'communication' %}" class="category-link">
+                    <ion-icon name="chatbubble-outline"></ion-icon> Communication Skills
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'quiz_view' 'emotion' %}" class="category-link">
+                    <ion-icon name="heart-outline"></ion-icon> Emotional Intelligence
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'quiz_view' 'ethics' %}" class="category-link">
+                    <ion-icon name="compass-outline"></ion-icon> Ethics
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'quiz_view' 'Sales' %}" class="category-link">
+                    <ion-icon name="briefcase-outline"></ion-icon> Customer Service
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <div class="main-content">
+            <div id="content-area">
+                <!-- Dashboard Content -->
+                <div class="dashboard-container">
+                    <div class="card">
+                        <div class="icon"><ion-icon name="analytics-outline"></ion-icon></div>
+                        <h3>Analytics</h3>
+                        <p>Get detailed insights and reports.</p>
+                    </div>
+                    <div class="card">
+                        <a href="{% url 'user_management' %}" class="card-link">
+                            <div class="icon"><ion-icon name="people-outline"></ion-icon></div>
+                            <h3>Users</h3>
+                            <p>Manage your users and their activities.</p>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="{% url 'course_list' %}" class="card-link">
+                            <div class="icon"><ion-icon name="book-outline"></ion-icon></div>
+                            <h3>Courses</h3>
+                            <p>View and manage your courses.</p>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="{% url 'user_list' %}" class="card-link">
+                            <div class="icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
+                            <h3>Statistics</h3>
+                            <p>View performance statistics.</p>
+                        </a>
+                    </div>
+                </div>
+                <!-- <div class="dashboard-container"> -->
+                    
+                    <div class="statistics">
+                        <div class="stat">
+                            <h3>{{ active_users }}</h3>
+                            <p>Active Users</p>
+                        </div>
+                        <div class="stat">
+                            <h3>{{ new_signups }}</h3>
+                            <p>New Signups</p>
+                        </div>
+                        <div class="stat">
+                            <h3>{{ courses_available }}</h3>
+                            <p>Courses Available</p>
+                        </div>
+                        <div class="stat">
+                            <h3>{{ quizzes_taken }}</h3>
+                            <p>Quizzes Taken</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-indicator" style="display:none;"><p>Loading...</p></div>
+
+    <form method="post" action="{% url 'fetch_questions' %}" id="category-form" style="display:none;">
+        {% csrf_token %}
+    </form>
+
+</body>
 
 {% endblock %}
-        
-        
-        
-        
-
-
-
-
-
-
-
-
-
-

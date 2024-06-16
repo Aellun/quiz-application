@@ -1,0 +1,67 @@
+/* custom.css */
+
+body {
+    background-color: #f8f9fa; /* Light gray background for better readability */
+    color: #333333; /* Dark gray text for general content */
+    /* background-image: url('{% static "DjangoQuiz/images/main.png" %}'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+}
+
+/* .background-image {
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+} */
+
+.navbar {
+    background-color: #008575 !important; /* Teal background for the navbar */
+    color: #ffffff !important; /* White text for the navbar */
+}
+
+.navbar a {
+    color: #ffffff !important; /* White text for navbar links */
+}
+
+.btn-primary {
+    background-color: #FF5E0E !important; /* Vibrant orange for primary buttons */
+    border-color: #FF5E0E !important; /* Border color same as background for primary buttons */
+}
+
+.btn-primary:hover {
+    background-color: #E5540D !important; /* Slightly darker orange on hover */
+    border-color: #E5540D !important; /* Border color same as background on hover */
+}
+
+.card {
+    border-color: #6A9C93 !important; /* Lighter teal border for cards */
+}
+
+.card-header {
+    background-color: #6A9C93 !important; /* Lighter teal background for card headers */
+    color: #ffffff !important; /* White text for card headers */
+}
+
+.text-muted {
+    color: #695D46 !important; /* Muted brown/gray for muted text */
+}
+
+.footer {
+    background-color: #333333 !important; /* Dark gray background for the footer */
+    color: #ffffff !important; /* White text for the footer */
+}
+
+.footer a {
+    color: #6A9C93 !important; /* Lighter teal for footer links */
+}
+
+.footer a:hover {
+    color: #008575 !important; /* Teal for footer links on hover */
+}
