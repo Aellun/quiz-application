@@ -40,7 +40,10 @@ def login_page(request):
                 return redirect('home')
             else:
                 messages.error(request, "Invalid username or password.")
-        context = {'form': AuthenticationForm()}
+        else:
+            form = AuthenticationForm()
+        
+        context = {'form': form}
         return render(request, 'Quiz/login.html', context)
 
 # View for user registration

@@ -1,88 +1,77 @@
-{% extends 'Quiz/dependencies.html' %}
-{% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="main">
-        <h2>Welcome to our Registration Page!</h2>
-        <p>Please fill out the form below to create your account:</p>
-        <form method="POST" action="" class="row">
-            {% csrf_token %}
-            <div class="col-md-12">
-                <label for="{{ form.username.id_for_label }}">Username:</label>
-                {{ form.username }}
-            </div>
-            
-            <div class="col-md-12">
-                <label for="{{ form.first_name.id_for_label }}">First Name:</label>
-                {{ form.first_name }}
-            </div>
-            <div class="col-md-12">
-                <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
-                {{ form.last_name }}
-            </div>
-            <div class="col-md-12">
-                <label for="{{ form.email.id_for_label }}">Email:</label>
-                {{ form.email }}
-            </div>
-            <div class="col-md-12">
-                <label for="{{ form.password1.id_for_label }}">Password:</label>
-                {{ form.password1 }}
-            </div>
-            <div class="col-md-12">
-                <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
-                {{ form.password2 }}
-            </div>
-            <div class="col-md-12 text-center">
-                <button class="btn btn-lg btn-success" type="submit">Register Account</button>
-            </div>
-        </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form | LearnHub</title>
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="{% static 'DjangoQuiz/css/signup.css' %}">
+</head>
+<body>
+    <div id="background-image">
+        <img src="{% static 'DjangoQuiz/images/hero-bg.jpg' %}" alt="Image">
     </div>
-</div>
-
-<style>
-    .main {
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        width: 600px;
-        margin: 50px auto;
-    }
-
-    h2 {
-        color: #4caf50;
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        color: #555;
-        font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    select {
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 10px;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    button[type="submit"] {
-        padding: 15px;
-        border-radius: 10px;
-        border: none;
-        background-color: #4caf50;
-        color: white;
-        cursor: pointer;
-        width: 100%;
-        font-size: 16px;
-    }
-</style>
+    
+    <!-- <div class="form-popup show-signup"> -->
+        <!-- <div class="blur-bg-overlay"></div> -->
+        <div class="form-box signup">
+            
+            <div class="form-details">
+                <div id="signup_image">
+                    <img src="{% static 'DjangoQuiz/images/login-img.jpg' %}" alt="Image">
+                    <h2>Create Account</h2>
+                <p>To become a part of our community, please sign up using your personal information.</p>
+                </div>
+                
+            </div>
+            <div class="form-content">
+                <h2>SIGNUP</h2>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        {{ form.username }}
+                        <label for="{{ form.username.id_for_label }}">Username:</label>
+                    </div>
+                    <div class="input-field">
+                        {{ form.first_name }}
+                        <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                    </div>
+                    <div class="input-field">
+                        {{ form.last_name }}
+                        <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                    </div>
+                    <div class="input-field">
+                        {{ form.email }}
+                        <label for="{{ form.email.id_for_label }}">Email:</label>
+                    </div>
+                    <div class="input-field">
+                        {{ form.password1 }}
+                        <label for="{{ form.password1.id_for_label }}">Password:</label>
+                    </div>
+                    <div class="input-field">
+                        {{ form.password2 }}
+                        <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                    </div>
+                    <div class="policy-text">
+                        <input type="checkbox" id="policy">
+                        <label for="policy">
+                            I agree to the
+                            <a href="#" class="option">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="bottom-link">
+                    Already have an account? 
+                    <a href='{% url 'login' %}'>Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 {% endblock %}

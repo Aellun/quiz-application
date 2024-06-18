@@ -1,63 +1,42 @@
-{% extends 'Quiz/dependencies.html' %}
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="main">
-                <h1>LearnHub</h1>
-                <h3>Enter your login credentials</h3>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username"
-                            placeholder="Enter your Username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Enter your Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-submit">Submit</button>
-                </form>
-                <p>Not registered? <a href='{% url 'register' %}' style="text-decoration: none;">Create an account</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .main {
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        padding: 30px;
-        text-align: left;
-        margin-top: 50px;
-    }
-
-    h1 {
-        color: #4CAF50;
-    }
-
-    label {
-        text-align: left;
-        color: #555;
-        font-weight: bold;
-    }
-
-    .form-control {
-        margin-bottom: 15px;
-    }
-
-    .btn-submit {
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        width: 100%;
-        border-radius: 10px;
-    }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form | LearnHub</title>
+  <link rel="stylesheet" href="{% static 'DjangoQuiz/css/login.css' %}">
+</head>
+<body>
+  <div class="wrapper">
+    <form method="POST" action="">
+      {% csrf_token %}
+      <h2>Login</h2>
+      <div class="input-field">
+        {{ form.username }}
+        {{ form.username.label_tag }}
+        {{ form.username.errors }}
+      </div>
+      <div class="input-field">
+        {{ form.password }}
+        {{ form.password.label_tag }}
+        {{ form.password.errors }}
+      </div>
+      <div class="forget">
+        <label for="remember">
+          <input type="checkbox" id="remember">
+          <p>Remember me</p>
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button type="submit">Log In</button>
+      <div class="register">
+        <p>Don't have an account? <a href='{% url 'register' %}'>Register</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
 {% endblock %}
