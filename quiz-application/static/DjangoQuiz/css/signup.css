@@ -102,13 +102,14 @@ body {
 
 #signup_image h2 {
     position: absolute;
-    top: 30px; /* Positions at the top of the container */
-    left: 30px; /* Positions at the left of the container */
+    top: 200px; /* Positions at the top of the container */
+    left: 60px; /* Positions at the left of the container */
     color: #fff; /* Example: Sets text color to white */
     background-color: rgba(0, 0, 0, 0.5); /* Example: Adds semi-transparent background */
     padding: 10px; /* Adds some padding around the text */
     box-sizing: border-box; /* Ensures padding doesn't add to the element's total width/height */
     font-size: 24px;
+    text-align: center;
 }
 
 
@@ -116,13 +117,13 @@ body {
     font-size: 18px; /* Adjust as needed */
     margin-top: 40px; /* Adds some space between the heading and paragraph */
     position: absolute;
-    top: 100px; /* Positions at the top of the container */
+    top: 250px; /* Positions at the top of the container */
     left: 30px; /* Positions at the left of the container */
     color: #fff; /* Example: Sets text color to white */
     background-color: rgba(0, 0, 0, 0.5); /* Example: Adds semi-transparent background */
     padding: 10px; /* Adds some padding around the text */
     box-sizing: border-box; /* Ensures padding doesn't add to the element's total width/height */
-    letter-spacing: 6px;
+    letter-spacing: 2px;
 }
 
 

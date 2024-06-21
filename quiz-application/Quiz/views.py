@@ -20,7 +20,7 @@ logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your 
 
 # Landing page view
 def landing_page(request):
-    return render(request, 'Quiz/landingPage.html')
+    return render(request, 'Quiz/index.html')
 
 def dashboard_view(request):
     return render(request, 'Quiz/dashboard.html')
