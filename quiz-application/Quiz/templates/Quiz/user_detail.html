@@ -3,48 +3,16 @@
 {% block title %}User Details and Quiz Attempts{% endblock %}
 
 {% block content %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Details and Quiz Attempts</title>
+    <title>Performance</title>
+    <link rel="stylesheet" href="{% static 'DjangoQuiz/css/user_list.css' %}">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        h2 {
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 16px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            border: 1px solid #dee2e6;
-            padding: 12px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: #007bff;
-            color: #fff;
-            text-transform: uppercase;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #e9ecef;
-        }
+        
     </style>
 </head>
 <body>

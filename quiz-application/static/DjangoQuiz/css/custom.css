@@ -22,7 +22,7 @@ body {
 } */
 
 .navbar {
-    background-color: #008575 !important; /* Teal background for the navbar */
+    background-color: #74512D !important; /* Teal background for the navbar */
     color: #ffffff !important; /* White text for the navbar */
 }
 
@@ -31,13 +31,13 @@ body {
 }
 
 .btn-primary {
-    background-color: #FF5E0E !important; /* Vibrant orange for primary buttons */
-    border-color: #FF5E0E !important; /* Border color same as background for primary buttons */
+    background-color: #219C90 !important; /* Vibrant orange for primary buttons */
+    border-color: white !important; /* Border color same as background for primary buttons */
 }
 
 .btn-primary:hover {
-    background-color: #E5540D !important; /* Slightly darker orange on hover */
-    border-color: #E5540D !important; /* Border color same as background on hover */
+    background-color: #A0937D !important; /* Slightly darker orange on hover */
+    border-color: white !important; /* Border color same as background on hover */
 }
 
 .card {

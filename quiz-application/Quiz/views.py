@@ -14,6 +14,8 @@ from django.contrib.auth.models import User
 from.models import UserProfile, QuizAttempt
 from datetime import timedelta
 from django.utils import timezone
+from django.views.decorators.http import require_POST
+from django.core import serializers
 
 # Initialize logger
 logger = logging.getLogger('DjangoQuiz')  # Use the logger name defined in your settings
@@ -225,41 +227,49 @@ def create_quiz_attempt(user_profile, category, score):
         category=category,
         score=score
     )
+def course_list(request):
+    return render(request, 'Quiz/course_list.html')
+
+# def fetch_users(request):
+#     if request.method == 'GET':
+#         users = User.objects.all()
+#         data = serializers.serialize('json', users)
+#         return JsonResponse(data, safe=False)
 
 
 # Fetch users
 def user_management(request):
-    users = User.objects.all()
-    return render(request, 'Quiz/user_management.html', {'users': users})
+    if request.method == 'GET':
+        users = User.objects.all()
+        context = {'users': users}  # Context for the template
+        return render(request, 'Quiz/user_management.html', context)
+    elif request.method == 'POST':  # or another method for AJAX calls
+        users = User.objects.all()
+        data = serializers.serialize('json', users)
+        return JsonResponse(data, safe=False)
 
-def course_list(request):
-    return render(request, 'Quiz/course_list.html')
 
 
-# Edit user (using POST to update user details)
-@csrf_exempt
+@require_POST
 def edit_user(request, user_id):
-    if request.method == 'POST':
-        try:
-            user = get_object_or_404(User, pk=user_id)
-            user.first_name = request.POST.get('first_name', user.first_name)
-            user.last_name = request.POST.get('last_name', user.last_name)
-            user.email = request.POST.get('email', user.email)
-            user.save()
-            return JsonResponse({'success': True, 'message': 'User details updated successfully.'})
-        except Exception as e:
-            return JsonResponse({'success': False, 'message': str(e)})
-    return JsonResponse({'success': False, 'message': 'Invalid request method.'})
+    try:
+        user = get_object_or_404(User, pk=user_id)
+        user.first_name = request.POST.get('first_name', user.first_name)
+        user.last_name = request.POST.get('last_name', user.last_name)
+        user.email = request.POST.get('email', user.email)
+        user.save()
+        return JsonResponse({'success': True, 'message': 'User details updated successfully.'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)})
 
-# Delete user
-@csrf_exempt
+@require_POST
 def delete_user(request, user_id):
-    if request.method == 'POST':
+    try:
         user = get_object_or_404(User, pk=user_id)
         user.delete()
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
-
+        return JsonResponse({'success': True, 'message': 'User deleted successfully.'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)})
 
 
 def user_list(request):

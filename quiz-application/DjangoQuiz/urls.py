@@ -35,5 +35,6 @@ urlpatterns = [
     path('users/<int:user_id>/', login_required(user_detail), name='user-detail'),
     path('quiz/<str:category>/', login_required(quiz_view), name='quiz_view'),
     path('stats/', login_required(stats), name='stats'),
+    # path('api/users/', fetch_users, name='fetch_users'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

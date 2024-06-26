@@ -42,7 +42,7 @@ body {
     padding-top: 16px;
     margin-top: 36px;
     transition: 0.5s;
-    background-color: transparent; 
+    background-color: #A0937D; 
     font-weight: 700;
 }
 
@@ -116,7 +116,7 @@ body {
 
 .card .icon {
     font-size: 45px;
-    color: #0ece0e;
+    color: white;
 }
 
 /* Statistics container and stat styles */

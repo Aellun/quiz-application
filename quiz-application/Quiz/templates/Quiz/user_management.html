@@ -1,220 +1,147 @@
 {% extends 'Quiz/dependencies.html' %}
-
 {% block content %}
 {% load static %}
-<!-- <link rel="stylesheet" href="{% static 'css/user_management.css' %}"> -->
+<link rel="stylesheet" href="{% static 'DjangoQuiz/css/user_management.css' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-    .dashboard-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background: #f3f3f3;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(239, 235, 235, 0.1);
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-}
-
-.user-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-   
-}
-
-.user-table th, .user-table td {
-    padding:202px 15px;
-    text-align: left;
-    border-bottom: 1px solid #232222;
-    align-items: center;
-}
-
-.user-table th {
-    background-color: #6e6c6c;
-    color: #333;
-    font-weight: bold;
-}
-
-.user-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.user-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.edit-user-button, .delete-user-button {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.edit-user-button {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.edit-user-button:hover {
-    background-color: #45a049;
-}
-
-.delete-user-button {
-    background-color: #f44336;
-    color: white;
-}
-
-.delete-user-button:hover {
-    background-color: #e53935;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 8px;
-}
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover, .close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal h2 {
-    margin-top: 0;
-}
-
-.modal form {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal form label {
-    margin: 10px 0 5px;
-    font-weight: bold;
-}
-
-.modal form input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.modal-button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.modal-button:hover {
-    background-color: #45a049;
-}
-
-</style>
-
-<div class="dashboard-container">
-    <h2>Manage Users</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="user-table-body">
-            {% for user in users %}
-            <tr data-user-id="{{ user.id }}">
-                <td>{{ user.first_name }}</td>
-                <td>{{ user.last_name }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                    <button class="edit-user-button">Edit</button>
-                    <button class="delete-user-button">Delete</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>Manage <b>Users</b></h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user-table-body">
+                    {% for user in users %}
+                    <tr data-user-id="{{ user.id }}">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <a href="#" class="settings edit-user-button" title="Edit" data-toggle="tooltip">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+                                </svg>
+                              </a>
+                              
+                              <a href="#" class="delete delete-user-button" title="Delete" data-toggle="tooltip">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                              </a>
+                              
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>{{ users|length }}</b> out of <b>{{ users.paginator.count }}</b> entries</div>
+                <ul class="pagination">
+                    {% if users.has_previous %}
+                    <li class="page-item"><a href="?page={{ users.previous_page_number }}" class="page-link">Previous</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a href="#" class="page-link">Previous</a></li>
+                    {% endif %}
+                    {% for i in users.paginator.page_range %}
+                    {% if users.number == i %}
+                    <li class="page-item active"><a href="#" class="page-link">{{ i }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if users.has_next %}
+                    <li class="page-item"><a href="?page={{ users.next_page_number }}" class="page-link">Next</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a href="#" class="page-link">Next</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal for editing user -->
-<div id="edit-user-modal" style="display:none;">
-    <h2>Edit User</h2>
-    <form id="edit-user-form">
-        <input type="hidden" name="user_id" id="edit-user-id">
-        <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" id="edit-first-name">
-        <label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" id="edit-last-name">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="edit-email">
-        <button type="submit">Save</button>
-    </form>
+<div id="edit-user-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-user-form">
+                    <input type="hidden" name="user_id" id="edit-user-id">
+                    <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name" id="edit-first-name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name" id="edit-last-name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="edit-email" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+
     // Edit user
-    document.querySelectorAll('.edit-user-button').forEach(button => {
-        button.addEventListener('click', function() {
-            let tr = this.closest('tr');
-            let userId = tr.getAttribute('data-user-id');
-            let firstName = tr.children[0].textContent;
-            let lastName = tr.children[1].textContent;
-            let email = tr.children[2].textContent;
+    $('.edit-user-button').on('click', function() {
+        let tr = $(this).closest('tr');
+        let userId = tr.data('user-id');
+        let firstName = tr.children().eq(1).text();
+        let lastName = tr.children().eq(2).text();
+        let email = tr.children().eq(3).text();
 
-            document.getElementById('edit-user-id').value = userId;
-            document.getElementById('edit-first-name').value = firstName;
-            document.getElementById('edit-last-name').value = lastName;
-            document.getElementById('edit-email').value = email;
+        $('#edit-user-id').val(userId);
+        $('#edit-first-name').val(firstName);
+        $('#edit-last-name').val(lastName);
+        $('#edit-email').val(email);
 
-            document.getElementById('edit-user-modal').style.display = 'block';
-        });
+        $('#edit-user-modal').modal('show');
     });
 
-    document.getElementById('edit-user-form').addEventListener('submit', function(e) {
+    $('#edit-user-form').on('submit', function(e) {
         e.preventDefault();
 
-        let userId = document.getElementById('edit-user-id').value;
+        let userId = $('#edit-user-id').val();
         let formData = new FormData(this);
 
         fetch(`/admin/users/edit/${userId}/`, {
@@ -226,22 +153,26 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+            alert(data.message);
             if (data.success) {
-                let tr = document.querySelector(`tr[data-user-id="${userId}"]`);
-                tr.children[0].textContent = formData.get('first_name');
-                tr.children[1].textContent = formData.get('last_name');
-                tr.children[2].textContent = formData.get('email');
-                document.getElementById('edit-user-modal').style.display = 'none';
+                let tr = $(`tr[data-user-id="${userId}"]`);
+                tr.children().eq(1).text(formData.get('first_name'));
+                tr.children().eq(2).text(formData.get('last_name'));
+                tr.children().eq(3).text(formData.get('email'));
+                $('#edit-user-modal').modal('hide');
             }
+        })
+        .catch(error => {
+            alert('An error occurred: ' + error);
         });
     });
 
     // Delete user
-    document.querySelectorAll('.delete-user-button').forEach(button => {
-        button.addEventListener('click', function() {
-            let tr = this.closest('tr');
-            let userId = tr.getAttribute('data-user-id');
+    $('.delete-user-button').on('click', function() {
+        let tr = $(this).closest('tr');
+        let userId = tr.data('user-id');
 
+        if (confirm('Are you sure you want to delete this user?')) {
             fetch(`/admin/users/delete/${userId}/`, {
                 method: 'POST',
                 headers: {
@@ -250,12 +181,17 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
+                alert(data.message);
                 if (data.success) {
                     tr.remove();
                 }
+            })
+            .catch(error => {
+                alert('An error occurred: ' + error);
             });
-        });
+        }
     });
 });
 </script>
+
 {% endblock %}
