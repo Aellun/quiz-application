@@ -94,10 +94,14 @@ def home(request):
         # Assuming you want to redirect or return some response after processing POST
         return HttpResponse("POST request processed")  # Or use redirect or render as needed
     else:
-        # Render the home page with categories
-        print("Rendering home page...")
+        # Determine the appropriate template
+        template_name = 'Quiz/home.html' if request.user.is_staff else 'Quiz/user_home.html'
+        print(f"Rendering {template_name}...")
         context = {'categories': ['Programming', 'Communication', 'Emotion', 'Ethics', 'Sales']}
-        return render(request, 'Quiz/home.html', context)
+        return render(request, template_name, context)
+    
+def user_home(request):
+        return redirect('Quiz/user_home.html')
 
 class FetchQuestionsView(View):
     def post(self, request, *args, **kwargs):

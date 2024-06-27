@@ -131,25 +131,61 @@ body {
   text-transform: uppercase;
   font-weight: 600;
 }
-
-.main-button a {
-  display: inline-block;
-  background-color: #fff;
-  color: #A0937D;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 40px;
-  padding: 0px 25px;
-  border-radius: 20px;
-  transition: all .3s;
-}
-
-.main-button a:hover {
-  background-color: #A0937D;
-  color: #fff;
-}
-
+/* General styles for the dropdown */
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Styling for the dropdown trigger */
+  .dropdown-trigger {
+    display: inline-block;
+    padding: 1em;
+    background-color: #A0937D;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .dropdown-trigger:hover {
+    background-color: #A0937D;
+  }
+  
+  /* Dropdown menu */
+  .dropdown-menu {
+    background-color:transparent;
+    display: none; /* Hidden by default */
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    top: 100%; /* Positions the dropdown just below the trigger */
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Adds shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for dropdown appearance */
+  }
+  
+  /* Individual dropdown items */
+  .dropdown-menu-item {
+    padding: 1em;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu-item:hover {
+    background-color: darken(#ED3E44, 5%); /* Darkens the background on hover */
+  }
+  
+  /* Show the dropdown menu on hover or focus */
+  .nav-item-dropdown:hover.dropdown-menu,
+  .dropdown-trigger:focus +.dropdown-menu {
+    display: block;
+    opacity: 1;
+  }
+  
 /* 
 ---------------------------------------------
 Pre-loader Style

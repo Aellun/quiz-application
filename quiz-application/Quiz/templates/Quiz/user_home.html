@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>LearnHub - Home</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'DjangoQuiz/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/user_home.css' %}">
+    <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <!-- Include Ionicons library -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <h1>LearnHub</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="#courses">Courses</a></li>
+                      <li class="nav-item nav-item-dropdown">
+                        <a class="dropdown-trigger" href="#">Take Quiz</a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'programming' %}">Computer Science</a></li>
+                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'communication' %}">Communication Skills</a></li>
+                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'emotion' %}">Emotional Intelligence</a></li>
+                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'ethics' %}">Ethics</a></li>
+                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'sales' %}">Customer Service</a></li>
+                        </ul>
+                      </li>
+                      
+                      
+                      <li class="scroll-to-section"><a href="#contact">contact us</a></li>
+                      <li><a href="{% url 'logout' %}">Logout</a></li> 
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1">
+              <div class="header-text">
+                <span class="category">Our Courses</span>
+                <h2>With LearnHub, Everything Is Easier</h2>
+                <p>LearnHub is a transformative web-based application designed to address the crucial need for self-development tools and resources within our organization.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <!-- <a href="#">Request Demo</a> -->
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> What's LearnHub?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item item-2">
+              <div class="header-text">
+                <span class="category">Best Result</span>
+                <h2>Get the best result out of your effort</h2>
+                <p>By leveraging cutting-edge technologies and a user-centric approach, the LearnHub aims to empower employees at all levels, fostering a culture of continuous learning and talent development.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#">Request Demo</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> What's the best result?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item item-3">
+              <div class="header-text">
+                <span class="category">Online Learning</span>
+                <h2>Online Learning helps you save the time</h2>
+                <p>Experience the efficiency of online learning, where you can access courses and resources anytime, anywhere.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <!-- <a href="#">Request Demo</a> -->
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services section" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{% static 'DjangoQuiz/assets/images/service-01.png' %}" alt="online degrees">
+            </div>
+            <div class="main-content">
+              <h4>Online Degrees</h4>
+              <p>Unlock new career opportunities with the flexibility of online degrees. 
+                Study at your own pace, balance your education with personal and professional commitments, 
+                and gain accredited qualifications from renowned institutions. 
+                Enjoy the benefits of lower costs and a tailored learning experience, 
+                all from the comfort of your home..</p>
+              <div class="main-button">
+                <a href="#">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{% static 'DjangoQuiz/assets/images/service-02.png' %}" alt="short courses">
+            </div>
+            <div class="main-content">
+              <h4>Short Courses</h4>
+              <h5>Quick, Effective, and Skill-Boosting</h5>
+              <p>Enhance your skills rapidly with short courses. 
+                Designed for efficiency, these focused programs fit into your busy schedule, 
+                providing targeted learning that directly applies to your career. 
+                Gain new knowledge and certifications in a fraction of the time, 
+                empowering you to stay competitive and up-to-date in your field.</p>
+              <div class="main-button">
+                <a href="#">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{% static 'DjangoQuiz/assets/images/service-03.png' %}" alt="web experts">
+            </div>
+            <div class="main-content">
+              <h4>Policy</h4>
+              <p>Our policies provide clear guidelines and standards to ensure consistency, fairness, and compliance within the organization. 
+                They are designed to protect your rights, promote ethical behavior, and support a positive and productive work environment. 
+                By adhering to these policies, we foster a culture of trust, integrity, and accountability.</p>
+              <div class="main-button">
+                <a href="#">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <section class="section courses" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Latest Courses</h6>
+            <h2>Latest Courses</h2>
+          </div>
+        </div>
+      </div>
+      <ul class="event_filter">
+        <li>
+          <a class="is_active" href="#!" data-filter="*">Show All</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".design">Communication Skills</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".development">Emotional Intelligence</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".wordpress">Ethics</a>
+        </li>
+      </ul>
+      <div class="row event_box">
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-01.jpg' %}" alt=""></a>
+              <span class="category">Communication Skills</span>
+              <span class="price"><h6><em>$</em>free</h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">okello kevin</span>
+              <h4>Learn communication skills</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6  development">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-02.jpg' %}" alt=""></a>
+              <span class="category">Emotional Intelligence</span>
+              <span class="price"><h6><em>$</em>free</h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">Allan Kevin</span>
+              <h4>Emotional Intelligence Foundtion</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design wordpress">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-03.jpg' %}" alt=""></a>
+              <span class="category">Policy</span>
+              <span class="price"><h6><em>$</em>key</h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">Kevin Allan</span>
+              <h4>Familiarize with company policy</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 development">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-04.jpg' %}" alt=""></a>
+              <span class="category">Ethics</span>
+              <span class="price"><h6><em>$</em>free</h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">Kevin</span>
+              <h4>Learn workplace Ethos</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress development">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-05.jpg' %}" alt=""></a>
+              <span class="category">Marketing</span>
+              <span class="price"><h6><em>$</em>free</h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">Okello</span>
+              <h4>Marketing and sale foundation</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress design">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-06.jpg' %}" alt=""></a>
+              <span class="category">EDMS</span>
+              <span class="price"><h6><em>$</em>key</h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">kevin</span>
+              <h4>Fundamentals of EDMS</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <div class="contact-us section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6  align-self-center">
+          <div class="section-heading">
+            <h6>Contact Us</h6>
+            <h2>Feel free to contact us anytime</h2>
+            <p>Thank you for choosing LearnHub. Your journey to continuous learning and professional growth is important to us. Feel free to reach out with any questions, feedback, or support needs. We're committed to providing you with the best learning experience.</p>
+            <div class="special-offer">
+              <span class="offer">off<br><em>50%</em></span>
+              <h6>Valide: <em>24 April 2036</em></h6>
+              <h4>Special Offer <em>50%</em> OFF!</h4>
+              <a href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="contact-us-content">
+            <form id="contact-form" action="" method="post">
+              <div class="row">
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <button type="submit" id="form-submit" class="orange-button">Send Message Now</button>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright © 2024 Okello Kevin. All rights reserved. &nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </footer>
+
+    <!-- Include Bootstrap and dependencies -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Include Owl Carousel script -->
+    <script src="{% static 'DjangoQuiz/assets/js/owl-carousel.js' %}"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownMenu = this.nextElementSibling;
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        const isDropdownTrigger = e.target.matches('.dropdown-trigger');
+        if (!isDropdownTrigger) {
+            const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+            dropdownMenus.forEach(menu => {
+                menu.style.display = 'none';
+            });
+        }
+    });
+});
+
+
+      $(document).ready(function(){
+        $(".owl-carousel").owlCarousel({
+          loop: true,
+          margin: 10,
+          nav: true,
+          responsive: {
+            0: {
+              items: 1
+            },
+            600: {
+              items: 1
+            },
+            1000: {
+              items: 1
+            }
+          }
+        });
+      });
+
+    $(document).ready(function() {
+        $('.dropdown-btn').click(function() {
+        $(this).next('.dropdown-items').toggle();
+  });
+});
+
+
+    </script>
+
+    <!-- Debugging Script -->
+  <script>
+       $(document).ready(function() {
+        // Check jQuery version
+        console.log('jQuery version:', $.fn.jquery);
+
+        // Check if the dropdown element is present
+        if ($('#navbardrop').length) {
+            console.log('Dropdown element found');
+        } else {
+            console.log('Dropdown element not found');
+        }
+
+        // Debug each element's presence by ID
+        // const elementIds = ['js-preloader', 'search', 'searchText', 'top', 'services', 
+        //                     'accordionExample', 'headingOne', 'collapseOne', 'headingTwo', 
+        //                     'collapseTwo', 'headingThree', 'collapseThree', 'headingFour', 
+        //                     'collapseFour', 'courses', 'contact', 'contact-form', 'name', 
+        //                     'email', 'message', 'form-submit'];
+        
+        // elementIds.forEach(id => {
+        //     if ($('#' + id).length) {
+        //         console.log('Element ID: ' + id + ' found');
+        //     } else {
+        //         console.log('Element ID: ' + id + ' not found');
+        //     }
+        // });
+
+        // Ensure dropdown toggle functionality
+        // $('.dropdown-toggle').dropdown();
+    });
+  </script>
+
+
+    <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'DjangoQuiz/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'DjangoQuiz/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'DjangoQuiz/assets/js/isotope.min.js' %}"></script>
+  <script src="{% static 'DjangoQuiz/assets/js/owl-carousel.js' %}"></script>
+  <script src="{% static 'DjangoQuiz/assets/js/counter.js' %}"></script>
+  <script src="{% static 'DjangoQuiz/assets/js/custom.js' %}"></script>
+
+</body>
+</html>
