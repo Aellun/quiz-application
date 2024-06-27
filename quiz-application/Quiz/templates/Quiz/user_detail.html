@@ -11,16 +11,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performance</title>
     <link rel="stylesheet" href="{% static 'DjangoQuiz/css/user_list.css' %}">
-    <style>
-        
-    </style>
 </head>
 <body>
 
     <section aria-labelledby="user-details">
         <h2 id="user-details">User Details</h2>
-        <p>Average Score: {{ user_profile.calculate_average_score }}</p>
-        <p>Number of Tests Taken: {{ user_profile.num_tests_taken }}</p>
+        <table role="table">
+            <thead>
+                <tr>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Average Score</td>
+                    <td>{{ user_profile.calculate_average_score }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Tests Taken</td>
+                    <td>{{ user_profile.num_tests_taken }}</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
     
     <section aria-labelledby="quiz-attempts">
@@ -42,4 +55,7 @@
             </tbody>
         </table>
     </section>
-    {% endblock %}
+
+</body>
+</html>
+{% endblock %}

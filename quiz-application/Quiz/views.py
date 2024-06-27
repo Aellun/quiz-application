@@ -221,11 +221,11 @@ def quiz_result(request):
     else:
         return redirect('home')
 
-def create_quiz_attempt(user_profile, category, score):
+def create_quiz_attempt(user_profile, category, percent):
     QuizAttempt.objects.create(
         user_profile=user_profile,
         category=category,
-        score=score
+        score=percent
     )
 def course_list(request):
     return render(request, 'Quiz/course_list.html')

@@ -2,24 +2,44 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/result.css' %}">
-    
 {% endblock %}
 
 {% block content %}
-<div class="container center-content">
-    <h1 class="congratulations">Congratulations!</h1>
-    <p class="motivational">You've completed the quiz. Here are your results:</p>
+<div class="container center-content" style="max-width: 600px; margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <h1 class="congratulations" style="text-align: center; color: #28a745; margin-bottom: 20px;">Congratulations!</h1>
+    <p class="motivational" style="text-align: center; font-size: 18px; color: #555; margin-bottom: 20px;">You've completed the quiz. Here are your results:</p>
     
-    <div class="card" style="width: 100%; max-width: 500px;">
-        <div class="card-body">
-            <h5 class="card-title">Score: {{ score }}</h5>
-            <p class="card-text">Percentage: {{ percent }}%</p>
-            <p class="card-text">Time Taken: {{ time }} seconds</p>
-            <p class="card-text">Correct Answers: {{ correct }}</p>
-            <p class="card-text">Incorrect Answers: {{ wrong }}</p>
-            <p class="card-text">Total Questions: {{ total }}</p>
-            <h5>All the best for the next quiz!</h5>
-            <a href="{% url 'home' %}" class="btn btn-success retake-button">Retake Quiz</a>
+    <div class="card" style="width: 100%; max-width: 500px; margin: auto;">
+        <div class="card-body" style="padding: 20px;">
+            <h5 class="card-title" style="font-size: 22px; margin-bottom: 10px;">Score: {{ score }}</h5>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Percentage:</td>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ percent }}%</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Time Taken:</td>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ time }} seconds</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Correct Answers:</td>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ correct }}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Incorrect Answers:</td>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ wrong }}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Total Questions:</td>
+                        <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5 style="text-align: center; margin-top: 20px; color: #555;">All the best for the next quiz!</h5>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="{% url 'home' %}" class="btn btn-success retake-button" style="padding: 10px 20px; font-size: 16px;">Retake Quiz</a>
+            </div>
         </div>
     </div>
 </div>

@@ -28,10 +28,16 @@
                         <td>{{ user_profile.user.username }}</td>
                         <td>{{ user_profile.calculate_average_score }}</td>
                         <td>{{ user_profile.num_tests_taken }}</td>
-                        <td><a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">Details</a></td>
+                        <td>
+                            <a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">
+                                Details
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </section>
-    {% endblock %}
+</body>
+</html>
+{% endblock %}

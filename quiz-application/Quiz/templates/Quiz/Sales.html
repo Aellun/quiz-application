@@ -2,14 +2,14 @@
 
 {% block content %}
 {% load static %}
-<div class="container">
-    <h1 class="text-center my-4">Welcome to LearnHub</h1>
-    <p class="text-center mb-4">Test your knowledge with our quiz. Select the best answer for each question.</p>
+<div class="container" style="max-width: 800px; margin: auto; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <h1 class="text-center my-4" style="color: #007bff;">Sales and Marketing Quiz</h1>
+    <p class="text-center mb-4" style="font-size: 16px; color: #555;">Select the best answer for each question. The timer will start once you select your first answer.</p>
 
-    <div class="alert alert-info text-right" id="displaytimer"><b>Timer: 0 seconds</b></div>
+    <div class="alert alert-info text-right" id="displaytimer" style="font-size: 16px;"><b>Timer: 0 seconds</b></div>
 
     {% if messages %}
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" style="font-size: 16px;">
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
@@ -21,29 +21,29 @@
         <input id="selected-category" type="hidden" name="category" value="{{ selected_category }}">
 
         {% for q in questions %}
-        <fieldset class="mb-4">
-            <legend>{{ forloop.counter }}. {{ q.question }}</legend>
+        <fieldset class="mb-4" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+            <legend style="font-size: 18px; color: #333;">{{ forloop.counter }}. {{ q.question }}</legend>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option1{{ q.id }}" value="option1" checked>
-                <label class="form-check-label" for="option1{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
+                <label class="form-check-label" for="option1{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct." style="font-size: 16px;">
                     {{ q.option1 }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option2{{ q.id }}" value="option2">
-                <label class="form-check-label" for="option2{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
+                <label class="form-check-label" for="option2{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct." style="font-size: 16px;">
                     {{ q.option2 }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option3{{ q.id }}" value="option3">
-                <label class="form-check-label" for="option3{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
+                <label class="form-check-label" for="option3{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct." style="font-size: 16px;">
                     {{ q.option3 }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option4{{ q.id }}" value="option4">
-                <label class="form-check-label" for="option4{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct.">
+                <label class="form-check-label" for="option4{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct." style="font-size: 16px;">
                     {{ q.option4 }}
                 </label>
             </div>
@@ -53,19 +53,17 @@
         <input id="timer" type="hidden" name="timer" value="">
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="padding: 10px 20px; font-size: 18px;">Submit</button>
         </div>
     </form>
 
     {% block script %}
         <script>
-            // JavaScript code for handling category selection and timer
             const timer = document.getElementById('displaytimer');
             const inputTag = document.getElementById('timer');
             let t = 0;
             let intervalId;
 
-            // Function to start the timer
             const startTimer = () => {
                 intervalId = setInterval(() => {
                     t += 1;
@@ -74,7 +72,6 @@
                 }, 1000);
             };
 
-            // Start the timer when the first radio button is clicked
             document.querySelectorAll('input[type="radio"]').forEach((radio) => {
                 radio.addEventListener('click', () => {
                     if (!intervalId) {
@@ -83,12 +80,10 @@
                 });
             });
 
-            // Clear interval on form submission to prevent timer from continuing after submission
             document.querySelector('form').addEventListener('submit', () => {
                 clearInterval(intervalId);
             });
 
-            // Initialize tooltips
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });

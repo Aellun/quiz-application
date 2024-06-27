@@ -5,7 +5,7 @@ body {
     font-size: 13px;
 }
 
-.table-wrapper {
+section {
     min-width: 600px; /* Adjust this as per your design */
     background: #fff;
     padding: 20px 25px;
@@ -13,17 +13,13 @@ body {
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
-.table-title {
+h2#user-list {
     padding-bottom: 15px;
     background: #A0937D;
     color: #fff;
     padding: 16px 30px;
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
-}
-
-.table-title h2 {
-    margin: 5px 0 0;
     font-size: 24px;
 }
 
@@ -95,6 +91,7 @@ table[role="table"] td a.delete:hover {
     background-color: red;
     padding: 6px;
 }
+
 /* Responsive Table */
 @media (max-width: 768px) {
     table[role="table"], thead, tbody, th, td, tr {
