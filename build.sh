@@ -1,11 +1,19 @@
 #!/bin/bash
 # Build the project
 echo "Building the project..."
+
+# Activate the virtual environment
+# source venv/bin/activate
+
+# Use the full path to manage.py
+FULL_PATH_TO_MANAGE_PY="quiz-application/manage.py"
+
+# Now proceed with the rest of the script
 python3.9 -m pip install -r requirements.txt
 
 echo "Make Migration..."
-python3.9 manage.py makemigrations --noinput
-python3.9 manage.py migrate --noinput
+$FULL_PATH_TO_MANAGE_PY makemigrations --noinput
+$FULL_PATH_TO_MANAGE_PY migrate --noinput
 
 echo "Collect Static..."
-python3.9 manage.py collectstatic --noinput --clear
+$FULL_PATH_TO_MANAGE_PY collectstatic --noinput --clear
