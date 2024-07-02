@@ -18,7 +18,8 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+# ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
 
 # Application definition
 INSTALLED_APPS = [
@@ -64,18 +65,32 @@ WSGI_APPLICATION = 'DjangoQuiz.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'QuizApp',
+#         'USER': 'postgres',
+#         'PASSWORD': '0vek#@!2023',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'QuizApp',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '0vek#@!2023',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'BDnayHqYomRBXXdmRFaprejDFTXhISNB',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '53036',
     }
 }
 
-DATABASES['default']= dj_database_url.parse(config("database_url"))
+
+# DATABASES['default']= dj_database_url.parse(config("database_url"))
+
+
 
 
 
@@ -114,10 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
 
 # Logging configuration
 LOGGING = {
