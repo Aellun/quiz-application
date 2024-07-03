@@ -1,10 +1,6 @@
-
 import os
 from pathlib import Path
-import dj_database_url
 from decouple import config
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,15 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config("SECRET_KEY")
-SECRET_KEY = '36jk%az^il&d66&dhy(j*!hu9b!oa2imidr5bwqcpwcuwz3cj8'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config("DEBUG", cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'okello.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -64,37 +57,38 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DjangoQuiz.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'QuizApp',
-#         'USER': 'postgres',
-#         'PASSWORD': '0vek#@!2023',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+# settings.py
+
+DATABASE_ROUTERS = ['DjangoQuiz.router.MyAppRouter']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'BDnayHqYomRBXXdmRFaprejDFTXhISNB',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '53036',
-    }
+        'ENGINE': config('LOCAL_DB_ENGINE'),
+        'NAME': config('LOCAL_DB_NAME'),
+        'USER': config('LOCAL_DB_USER'),
+        'PASSWORD': config('LOCAL_DB_PASSWORD'),
+        'HOST': config('LOCAL_DB_HOST'),
+        'PORT': config('LOCAL_DB_PORT'),
+    },
+    'postgres': {
+        'ENGINE': config('POSTGRES_ENGINE'),
+        'NAME': config('POSTGRES_NAME'),
+        'USER': config('POSTGRES_USER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': config('POSTGRES_PORT'),
+    },
+    'mysql': {
+        'ENGINE': config('MYSQL_ENGINE'),
+        'NAME': config('MYSQL_NAME'),
+        'USER': config('MYSQL_USER'),
+        'PASSWORD': config('MYSQL_PASSWORD'),
+        'HOST': config('MYSQL_HOST'),
+        'PORT': config('MYSQL_PORT'),
+    },
 }
-
-
-# DATABASES['default']= dj_database_url.parse(config("database_url"))
-
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -113,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -126,7 +119,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
@@ -134,7 +126,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
 
 # Logging configuration
 LOGGING = {
