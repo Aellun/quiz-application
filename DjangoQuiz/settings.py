@@ -14,7 +14,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = list(config("ALLOWED_HOSTS"))
+# ALLOWED_HOSTS = list(config("ALLOWED_HOSTS"))
+ALLOWED_HOSTS =['learnhub-exygt9wm9-okello-kevins-projects.vercel.app','learnhub-seven.vercel.app','learnhub-git-main-okello-kevins-projects.vercel.app']
 
 # Application definition
 INSTALLED_APPS = [
