@@ -1,4 +1,4 @@
-/* External CSS */
+
 .container {
     max-width: 900px;
     margin: auto;
@@ -55,22 +55,19 @@
         column-count: 3;
     }
 }
-
-/* Internal CSS from the Django template */
-<style>
-   .card {
+.card {
         margin-top: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-   .card-title {
+.card-title {
         font-size: 1.5rem;
         color: #4caf50;
     }
-   .card-text {
+.card-text {
         font-size: 1.2rem;
     }
-   .congratulations {
+.congratulations {
         font-size: 1.8rem;
         color: #4caf50;
         margin-bottom: 20px;
@@ -79,11 +76,11 @@
         font-size: 1.2rem;
         margin-bottom: 20px;
     }
-   .retake-button {
+.retake-button {
         margin-top: 20px;
         font-size: 1.2rem;
     }
-   .center-content {
+.center-content {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -91,4 +88,4 @@
         min-height: 100vh;
         text-align: center;
     }
-</style>
+
