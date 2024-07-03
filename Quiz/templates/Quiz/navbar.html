@@ -4,11 +4,11 @@
 .greet {
     font-size: 18px;
     color: #fff;
-    margin-right: 10px; /* Reduced margin for better alignment */
+    margin-right: 10px;
   }
 
 .navbar-custom {
-    background-color: #A0937D; /* Custom background color for the navbar */
+    background-color: #A0937D;
   }
 </style>
 
@@ -25,13 +25,9 @@
       {% else %}
         <!-- Non-staff user links -->
         <a class="nav-link" href="{% url 'user_home' %}">HOME</a>
-        <!-- <div class="d-flex align-items-center">
-          <span class="greet">Hello, {{ request.user }}</span>
-          <span><a class="greet" href="{% url 'logout' %}">Logout</a></span>
-        </div> -->
       {% endif %}
     </div>
-    <!-- Greeting and Logout links, pushed to the far right -->
+    
     <div class="d-flex align-items-center">
       <span class="greet">Hello, {{ request.user }}</span>
       <span><a class="greet" href="{% url 'logout' %}">Logout</a></span>

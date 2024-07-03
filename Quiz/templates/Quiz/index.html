@@ -19,13 +19,7 @@
     <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/animate.css' %}">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
 
-TemplateMo 586 Scholar
-
-https://templatemo.com/tm-586-scholar
-
--->
   </head>
 
 <body>
@@ -53,15 +47,13 @@ https://templatemo.com/tm-586-scholar
                     <a href="index.html" class="logo">
                         <h1>LearnHub</h1>
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Serach Start ***** -->
                     <div class="search-input">
                       <form id="search" action="#">
                         <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
                         <i class="fa fa-search"></i>
                       </form>
                     </div>
-                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** search Start ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                       <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
@@ -94,9 +86,7 @@ https://templatemo.com/tm-586-scholar
                 <h2>With LearnHub, Everything Is Easier</h2>
                 <p>LearnHub is a transformative web-based application designed to address the crucial need for self-development tools and resources within our organization.</p>
                 <div class="buttons">
-                  <div class="main-button">
-                    <!-- <a href="#">Request Demo</a> -->
-                  </div>
+                  
                   <div class="icon-button">
                     <a href="#"><i class="fa fa-play"></i> What's LearnHub?</a>
                   </div>
@@ -377,105 +367,8 @@ https://templatemo.com/tm-586-scholar
     </div>
   </section>
 
-  <div class="section fun-facts">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="wrapper">
-            <div class="row">
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="150" data-speed="1000"></h2>
-                   <p class="count-text ">Happy members</p>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="500" data-speed="1000"></h2>
-                  <p class="count-text ">Course Hours</p>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="50" data-speed="1000"></h2>
-                  <p class="count-text ">Employed Students</p>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter end">
-                  <h2 class="timer count-title count-number" data-to="10" data-speed="1000"></h2>
-                  <p class="count-text ">Years Experience</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- <div class="team section" id="team">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="{% static 'DjangoQuiz/assets/images/member-01.jpg' %}" alt="">
-              <span class="category">UX Teacher</span>
-              <h4>Kevin K</h4>
-              <ul class="social-icons">
-                <li><a href="https://www.facebook.com/profile.php?id=100059351630946"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://x.com/kevinkregs"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/okello-kevin/"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="{% static 'DjangoQuiz/assets/images/member-02.jpg' %}" alt="">
-              <span class="category">Graphic Teacher</span>
-              <h4>Cindy Walker</h4>
-              <ul class="social-icons">
-                <li><a href="https://www.facebook.com/profile.php?id=100059351630946"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://x.com/kevinkregs"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/okello-kevin/"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="{% static 'DjangoQuiz/assets/images/member-03.jpg' %}" alt="">
-              <span class="category">Full Stack Master</span>
-              <h4>David Hutson</h4>
-              <ul class="social-icons">
-                <li><a href="https://www.facebook.com/profile.php?id=100059351630946"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://x.com/kevinkregs"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/okello-kevin/"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="{% static 'DjangoQuiz/assets/images/member-04.jpg' %}" alt="">
-              <span class="category">Digital Animator</span>
-              <h4>Stella Blair</h4>
-              <ul class="social-icons">
-                <li><a href="https://www.facebook.com/profile.php?id=100059351630946"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://x.com/kevinkregs"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/okello-kevin/"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>  -->
+<!-- Developer and social -->
 
   <div class="section testimonials">
     <div class="container">
@@ -505,7 +398,7 @@ https://templatemo.com/tm-586-scholar
             <div class="item">
               <p>“Holder of a Bachelor's Degree in Business Technology with a focus on Information Technology.”</p>
               <div class="author">
-                <img src="{% static 'DjangoQuiz/assets/images/member-003.jpg' %}" alt="">
+                <img src="{% static 'DjangoQuiz/assets/images/member-003.png' %}" alt="">
                 <span class="category">The Technical University of Kenya</span>
                 <h4>Kenya</h4>
               </div>
@@ -522,123 +415,13 @@ https://templatemo.com/tm-586-scholar
               <li><a href="https://x.com/kevinkregs"><i class="fab fa-twitter"></i></a></li>
               <li><a href="https://www.linkedin.com/in/okello-kevin/"><i class="fab fa-linkedin"></i></a></li>
             </ul>
-            
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- <div class="section events" id="events">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="section-heading">
-            <h6>Schedule</h6>
-            <h2>Upcoming Events</h2>
-          </div>
-        </div>
-        <div class="col-lg-12 col-md-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="image">
-                  <img src="{% static 'DjangoQuiz/assets/images/event-01.jpg' %}" alt="">
-                </div>
-              </div>
-              <div class="col-lg-9">
-                <ul>
-                  <li>
-                    <span class="category">Web Design</span>
-                    <h4>UI Best Practices</h4>
-                  </li>
-                  <li>
-                    <span>Date:</span>
-                    <h6>16 Feb 2036</h6>
-                  </li>
-                  <li>
-                    <span>Duration:</span>
-                    <h6>22 Hours</h6>
-                  </li>
-                  <li>
-                    <span>Price:</span>
-                    <h6>$120</h6>
-                  </li>
-                </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12 col-md-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="image">
-                  <img src="{% static 'DjangoQuiz/assets/images/event-02.jpg' %}" alt="">
-                </div>
-              </div>
-              <div class="col-lg-9">
-                <ul>
-                  <li>
-                    <span class="category">Front End</span>
-                    <h4>New Design Trend</h4>
-                  </li>
-                  <li>
-                    <span>Date:</span>
-                    <h6>24 Feb 2036</h6>
-                  </li>
-                  <li>
-                    <span>Duration:</span>
-                    <h6>30 Hours</h6>
-                  </li>
-                  <li>
-                    <span>Price:</span>
-                    <h6>$320</h6>
-                  </li>
-                </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12 col-md-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="image">
-                  
-                  <img src="{% static 'DjangoQuiz/assets/images/event-03.jpg' %}" alt="">
-                </div>
-              </div>
-              <div class="col-lg-9">
-                <ul>
-                  <li>
-                    <span class="category">Full Stack</span>
-                    <h4>Web Programming</h4>
-                  </li>
-                  <li>
-                    <span>Date:</span>
-                    <h6>12 Mar 2036</h6>
-                  </li>
-                  <li>
-                    <span>Duration:</span>
-                    <h6>48 Hours</h6>
-                  </li>
-                  <li>
-                    <span>Price:</span>
-                    <h6>$440</h6>
-                  </li>
-                </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
+  <!-- contact -->
   <div class="contact-us section" id="contact">
     <div class="container">
       <div class="row">

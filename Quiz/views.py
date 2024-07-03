@@ -234,12 +234,6 @@ def create_quiz_attempt(user_profile, category, percent):
 def course_list(request):
     return render(request, 'Quiz/course_list.html')
 
-# def fetch_users(request):
-#     if request.method == 'GET':
-#         users = User.objects.all()
-#         data = serializers.serialize('json', users)
-#         return JsonResponse(data, safe=False)
-
 
 # Fetch users
 def user_management(request):

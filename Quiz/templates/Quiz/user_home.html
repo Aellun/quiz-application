@@ -98,9 +98,6 @@
                 <h2>With LearnHub, Everything Is Easier</h2>
                 <p>LearnHub is a transformative web-based application designed to address the crucial need for self-development tools and resources within our organization.</p>
                 <div class="buttons">
-                  <div class="main-button">
-                    <!-- <a href="#">Request Demo</a> -->
-                  </div>
                   <div class="icon-button">
                     <a href="#"><i class="fa fa-play"></i> What's LearnHub?</a>
                   </div>
@@ -128,9 +125,6 @@
                 <h2>Online Learning helps you save the time</h2>
                 <p>Experience the efficiency of online learning, where you can access courses and resources anytime, anywhere.</p>
                 <div class="buttons">
-                  <div class="main-button">
-                    <!-- <a href="#">Request Demo</a> -->
-                  </div>
                   <div class="icon-button">
                     <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
                   </div>
@@ -202,8 +196,6 @@
       </div>
     </div>
   </div>
-
-  
 
   <section class="section courses" id="courses" >
     <div class="container">
@@ -311,7 +303,6 @@
       </div>
     </div>
   </section>
-
   
   <div class="contact-us section" id="contact">
     <div class="container">
@@ -320,13 +311,9 @@
           <div class="section-heading">
             <h6>Contact Us</h6>
             <h2>Feel free to contact us anytime</h2>
-            <p>Thank you for choosing LearnHub. Your journey to continuous learning and professional growth is important to us. Feel free to reach out with any questions, feedback, or support needs. We're committed to providing you with the best learning experience.</p>
-            <div class="special-offer">
-              <span class="offer">off<br><em>50%</em></span>
-              <h6>Valide: <em>24 April 2036</em></h6>
-              <h4>Special Offer <em>50%</em> OFF!</h4>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
-            </div>
+            <p>Thank you for choosing LearnHub. Your journey to continuous learning and professional growth is important to us. 
+              Feel free to reach out with any questions, feedback, or support needs. 
+              We're committed to providing you with the best learning experience.</p>
           </div>
         </div>
         <div class="col-lg-6">
@@ -375,6 +362,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'DjangoQuiz/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'DjangoQuiz/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'DjangoQuiz/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'DjangoQuiz/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'DjangoQuiz/assets/js/counter.js' %}"></script>
+    <script src="{% static 'DjangoQuiz/assets/js/custom.js' %}"></script>
+
 
     <!-- Include Owl Carousel script -->
     <script src="{% static 'DjangoQuiz/assets/js/owl-carousel.js' %}"></script>
@@ -431,52 +425,6 @@ document.addEventListener('DOMContentLoaded', function() {
         $(this).next('.dropdown-items').toggle();
   });
 });
-
-
-    </script>
-
-    <!-- Debugging Script -->
-  <script>
-       $(document).ready(function() {
-        // Check jQuery version
-        console.log('jQuery version:', $.fn.jquery);
-
-        // Check if the dropdown element is present
-        if ($('#navbardrop').length) {
-            console.log('Dropdown element found');
-        } else {
-            console.log('Dropdown element not found');
-        }
-
-        // Debug each element's presence by ID
-        // const elementIds = ['js-preloader', 'search', 'searchText', 'top', 'services', 
-        //                     'accordionExample', 'headingOne', 'collapseOne', 'headingTwo', 
-        //                     'collapseTwo', 'headingThree', 'collapseThree', 'headingFour', 
-        //                     'collapseFour', 'courses', 'contact', 'contact-form', 'name', 
-        //                     'email', 'message', 'form-submit'];
-        
-        // elementIds.forEach(id => {
-        //     if ($('#' + id).length) {
-        //         console.log('Element ID: ' + id + ' found');
-        //     } else {
-        //         console.log('Element ID: ' + id + ' not found');
-        //     }
-        // });
-
-        // Ensure dropdown toggle functionality
-        // $('.dropdown-toggle').dropdown();
-    });
   </script>
-
-
-    <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'DjangoQuiz/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'DjangoQuiz/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'DjangoQuiz/assets/js/isotope.min.js' %}"></script>
-  <script src="{% static 'DjangoQuiz/assets/js/owl-carousel.js' %}"></script>
-  <script src="{% static 'DjangoQuiz/assets/js/counter.js' %}"></script>
-  <script src="{% static 'DjangoQuiz/assets/js/custom.js' %}"></script>
-
 </body>
 </html>
