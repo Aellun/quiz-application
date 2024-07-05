@@ -4,6 +4,9 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
+from django.conf import settings # new
+from  django.conf.urls.static import static #new
+
 
 from Quiz.views import (
     landing_page, add_question, login_page, logout_page, register_page, home,user_home,
@@ -36,6 +39,8 @@ urlpatterns = [
     path('users/<int:user_id>/', login_required(user_detail), name='user-detail'),
     path('quiz/<str:category>/', login_required(quiz_view), name='quiz_view'),
     path('stats/', login_required(stats), name='stats'),
-    # path('api/users/', fetch_users, name='fetch_users'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_URL)
 

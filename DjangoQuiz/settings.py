@@ -63,36 +63,17 @@ WSGI_APPLICATION = 'DjangoQuiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 # settings.py
-
-DATABASE_ROUTERS = ['DjangoQuiz.router.MyAppRouter']
-
+# local db setup
 DATABASES = {
     'default': {
-        'ENGINE': config('LOCAL_DB_ENGINE'),
-        'NAME': config('LOCAL_DB_NAME'),
-        'USER': config('LOCAL_DB_USER'),
-        'PASSWORD': config('LOCAL_DB_PASSWORD'),
-        'HOST': config('LOCAL_DB_HOST'),
-        'PORT': config('LOCAL_DB_PORT'),
-    },
-    'postgres': {
-        'ENGINE': config('POSTGRES_ENGINE'),
-        'NAME': config('POSTGRES_NAME'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT'),
-    },
-    'mysql': {
-        'ENGINE': config('MYSQL_ENGINE'),
-        'NAME': config('MYSQL_NAME'),
-        'USER': config('MYSQL_USER'),
-        'PASSWORD': config('MYSQL_PASSWORD'),
-        'HOST': config('MYSQL_HOST'),
-        'PORT': config('MYSQL_PORT'),
-    },
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME':'QuizApp',
+    'USER':'postgres',
+    'PASSWORD':'0vek#@!2023',
+    'HOST':'localhost',
+    'PORT': 5432,
+        }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -158,3 +139,4 @@ LOGGING = {
         },
     },
 }
+
