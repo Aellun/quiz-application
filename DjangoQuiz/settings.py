@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +15,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 # ALLOWED_HOSTS = list(config("ALLOWED_HOSTS"))
-ALLOWED_HOSTS =['127.0.0.1','localhost','learnhub-exygt9wm9-okello-kevins-projects.vercel.app','learnhub-seven.vercel.app','learnhub-git-main-okello-kevins-projects.vercel.app']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definition
 INSTALLED_APPS = [
@@ -63,16 +63,18 @@ WSGI_APPLICATION = 'DjangoQuiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 # settings.py
-# local db setup
+# local db setup for development
+
+
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME':'QuizApp',
-    'USER':'postgres',
-    'PASSWORD':'0vek#@!2023',
-    'HOST':'localhost',
-    'PORT': 5432,
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_NAME'),
+        'USER': config('POSTGRES_USER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': config('POSTGRES_PORT', default='5432'),
+    }
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
