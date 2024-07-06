@@ -1,4 +1,7 @@
 {% extends 'Quiz/dependencies.html' %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 {% block content %}
 {% load static %}
@@ -10,6 +13,8 @@
 <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/home.css' %}">
 
 <body>
+   
+
     <div id="background-image">
         <img src="{% static 'DjangoQuiz/assets/images/main.png' %}" alt="Image">
     </div>
@@ -43,7 +48,6 @@
             </li>
         </ul>
     </div>
-    
 
     <div id="main">
         <div class="main-content">
@@ -77,25 +81,23 @@
                         </a>
                     </div>
                 </div>
-                <!-- <div class="dashboard-container"> -->
-                    
-                    <div class="statistics">
-                        <div class="stat">
-                            <h3>{{ active_users }}</h3>
-                            <p>Active Users</p>
-                        </div>
-                        <div class="stat">
-                            <h3>{{ new_signups }}</h3>
-                            <p>New Signups</p>
-                        </div>
-                        <div class="stat">
-                            <h3>{{ courses_available }}</h3>
-                            <p>Courses Available</p>
-                        </div>
-                        <div class="stat">
-                            <h3>{{ quizzes_taken }}</h3>
-                            <p>Quizzes Taken</p>
-                        </div>
+
+                <div class="statistics">
+                    <div class="stat">
+                        <h3>{{ active_users }}</h3>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="stat">
+                        <h3>{{ new_signups }}</h3>
+                        <p>New Signups</p>
+                    </div>
+                    <div class="stat">
+                        <h3>{{ courses_available }}</h3>
+                        <p>Courses Available</p>
+                    </div>
+                    <div class="stat">
+                        <h3>{{ quizzes_taken }}</h3>
+                        <p>Quizzes Taken</p>
                     </div>
                 </div>
             </div>
@@ -107,7 +109,6 @@
     <form method="post" action="{% url 'fetch_questions' %}" id="category-form" style="display:none;">
         {% csrf_token %}
     </form>
-
 </body>
 
 {% endblock %}

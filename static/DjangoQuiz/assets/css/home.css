@@ -31,18 +31,25 @@ body {
     text-align: center;
 }
 
+/* Navbar styles */
+.navbar-custom {
+    background-color: #A0937D;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the navbar is above other content */
+}
+
 /* Sidebar styles */
 .sidebar {
-    width: 280px; /* Adjusted width */
+    width: 280px;
     position: fixed;
-    top: 20px;
+    top: 56px; /* Adjusted to be below the navbar */
     left: 0;
-    height: 100vh;
-    overflow-x: hidden;
+    height: calc(100vh - 56px); /* Adjusted to be full height minus the navbar height */
+    overflow-y: auto;
     padding-top: 16px;
-    margin-top: 36px;
-    transition: 0.5s;
-    background-color: #A0937D; 
+    background-color: #A0937D;
     font-weight: 700;
 }
 
@@ -53,8 +60,8 @@ body {
 
 .sidebar li a {
     display: block;
-    color: #fff; /* Changed to white for better readability */
-    text-decoration: none; /* Changed from 'solid' to 'none' */
+    color: #fff;
+    text-decoration: none;
     padding: 16px 16px;
     border-bottom: 2px solid #c7c3c3;
 }
@@ -66,16 +73,17 @@ body {
 
 /* Icon styles */
 .large-icon {
-    font-size: 24px; /* Increase size as needed */
-    vertical-align: middle; /* Align icon vertically with text */
-    margin-right: 8px; /* Space between icon and text */
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 /* Main content area styles */
 #main {
-    transition: margin-left 0.5s; /* Adjusted for smoothness */
+    margin-top: 56px; /* Adjusted to be below the navbar */
+    margin-left: 280px; /* Adjusted to match the sidebar width */
     padding: 16px;
-    margin-left: 250px; /* Adjusted to match the sidebar width */
+    transition: margin-left 0.5s;
 }
 
 .main-content {
@@ -94,7 +102,7 @@ body {
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(30,0,0,30);
     margin: 10px;
-    flex: 1 1 200px; /* Adjusted for responsiveness */
+    flex: 1 1 200px;
     padding: 20px;
     transition: transform 0.2s;
     font-weight: 850;
@@ -111,7 +119,6 @@ body {
 
 .card p {
     color: white;
-    display: center;
 }
 
 .card .icon {
@@ -124,7 +131,7 @@ body {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    max-width: 100vw; /* Adjust as needed */
+    max-width: 100vw;
 }
 
 .stat {
@@ -138,12 +145,61 @@ body {
     font-weight: 900;
 }
 
-
 .stat h3 {
     margin: 20px;
-    
 }
 
 .stat p {
     color: white;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    #main {
+        margin-left: 0;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+
+    .statistics {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        padding-top: 0;
+    }
+
+    .sidebar ul {
+        flex-direction: column;
+    }
+
+    .card {
+        margin: 5px;
+    }
+
+    .stat {
+        margin: 5px;
+    }
 }
