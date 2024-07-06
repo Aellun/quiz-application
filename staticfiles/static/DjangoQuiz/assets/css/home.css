@@ -52,6 +52,25 @@ body {
     background-color: #A0937D;
     font-weight: 700;
 }
+/* Style for the sidebar toggle button */
+#sidebarToggle {
+    position: relative;
+    top: 45%; 
+    left: 281px;
+    z-index: 1000; 
+    cursor: pointer;
+    background-color: transparent;
+    color: white; 
+    border: none;
+    padding: 10px; 
+    font-size: 24px; 
+    border-radius: 5px;
+}
+
+
+#sidebarToggle:hover {
+    background-color:transparent; 
+}
 
 .sidebar ul {
     list-style: none;
@@ -81,7 +100,7 @@ body {
 /* Main content area styles */
 #main {
     margin-top: 56px; /* Adjusted to be below the navbar */
-    margin-left: 280px; /* Adjusted to match the sidebar width */
+    margin-left: 290px; /* Adjusted to match the sidebar width */
     padding: 16px;
     transition: margin-left 0.5s;
 }
@@ -203,3 +222,6 @@ body {
         margin: 5px;
     }
 }
+
+
+
