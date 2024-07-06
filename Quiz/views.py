@@ -97,7 +97,7 @@ def home(request):
         # Determine the appropriate template
         template_name = 'Quiz/home.html' if request.user.is_staff else 'Quiz/user_home.html'
         print(f"Rendering {template_name}...")
-        context = {'categories': ['Programming', 'Communication', 'Emotion', 'Ethics', 'Sales']}
+        context = {'categories': ['programming', 'communication', 'emotion', 'ethics', 'sales']}
         return render(request, template_name, context)
     
 def user_home(request):
