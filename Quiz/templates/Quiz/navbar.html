@@ -1,46 +1,60 @@
 {% load static %}
 
 <style>
+/* Styling for greeting text */
 .greet {
     font-size: 18px;
     color: #fff;
     margin-right: 10px;
 }
 
+/* Custom styling for the navbar */
 .navbar-custom {
     background-color: #A0937D;
 }
 
+/* Media query for smaller screens */
 @media (max-width: 768px) {
+    /* Adjusted styling for greeting text on smaller screens */
     .greet {
-        font-size: 16px;
+        font-size: 16px; 
         margin-right: 5px;
     }
+
+    /* Adjusted styling for nav links on smaller screens */
     .navbar-nav .nav-link {
-        font-size: 16px;
+        font-size: 16px; 
         margin-right: 10px;
     }
 }
 </style>
 
+<!-- Bootstrap navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <!-- Navbar toggler button for responsive design -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  
+  <!-- Navbar content wrapper -->
   <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarNav">
+    <!-- Left side of the navbar -->
     <div class="navbar-nav">
       {% if request.user.is_staff %}
-        <!-- Staff user links -->
+        <!-- Display links for staff users -->
         <a class="nav-link" href="{% url 'home' %}">HOME</a>
         <a class="nav-link" href="{% url 'addQuestion' %}">ADD QUESTION</a>
       {% else %}
-        <!-- Non-staff user links -->
+        <!-- Display link for non-staff users -->
         <a class="nav-link" href="{% url 'user_home' %}">HOME</a>
       {% endif %}
     </div>
     
+    <!-- Right side of the navbar -->
     <div class="d-flex align-items-center">
+      <!-- Greeting message with username -->
       <span class="greet">Hello, {{ request.user }}</span>
+      <!-- Logout link -->
       <span><a class="greet" href="{% url 'logout' %}">Logout</a></span>
     </div>
   </div>

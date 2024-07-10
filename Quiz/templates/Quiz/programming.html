@@ -2,12 +2,16 @@
 
 {% block content %}
 {% load static %}
+<!-- Main container for the quiz with styling -->
 <div class="container" style="max-width: 800px; margin: auto; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <!-- Quiz Title and Description -->
     <h1 class="text-center my-4" style="color: #007bff;">Programming Quiz</h1>
     <p class="text-center mb-4" style="font-size: 16px; color: #555;">Select the best answer for each question. The timer will start once you select your first answer.</p>
 
+    <!-- Timer display -->
     <div class="alert alert-info text-right" id="displaytimer" style="font-size: 16px;"><b>Timer: 0 seconds</b></div>
 
+    <!-- Display messages if there are any -->
     {% if messages %}
     <div class="alert alert-danger" style="font-size: 16px;">
         {% for message in messages %}
@@ -16,13 +20,16 @@
     </div>
     {% endif %}
 
+    <!-- Quiz form -->
     <form method="post" action="{% url 'result' %}">
         {% csrf_token %}
         <input id="selected-category" type="hidden" name="category" value="{{ selected_category }}">
 
+        <!-- Loop through each question and render it -->
         {% for q in questions %}
         <fieldset class="mb-4" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
             <legend style="font-size: 18px; color: #333;">{{ forloop.counter }}. {{ q.question }}</legend>
+            <!-- Render each option as a radio button -->
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="question{{ q.id }}" id="option1{{ q.id }}" value="option1" checked>
                 <label class="form-check-label" for="option1{{ q.id }}" data-toggle="tooltip" title="Select this option if you think it is correct." style="font-size: 16px;">
@@ -50,20 +57,25 @@
         </fieldset>
         {% endfor %}
         
+        <!-- Hidden input to store timer value -->
         <input id="timer" type="hidden" name="timer" value="">
 
+        <!-- Submit button -->
         <div class="text-center">
             <button type="submit" class="btn btn-primary btn-lg" style="padding: 10px 20px; font-size: 18px;">Submit</button>
         </div>
     </form>
 
+    <!-- Script block for handling timer and tooltips -->
     {% block script %}
         <script>
+            // Timer related variables
             const timer = document.getElementById('displaytimer');
             const inputTag = document.getElementById('timer');
-            let t = 0;
+            let t = 0;  // Timer counter
             let intervalId;
 
+            // Function to start the timer
             const startTimer = () => {
                 intervalId = setInterval(() => {
                     t += 1;
@@ -72,6 +84,7 @@
                 }, 1000);
             };
 
+            // Event listener to start the timer on the first radio button click
             document.querySelectorAll('input[type="radio"]').forEach((radio) => {
                 radio.addEventListener('click', () => {
                     if (!intervalId) {
@@ -80,10 +93,12 @@
                 });
             });
 
+            // Stop the timer when the form is submitted
             document.querySelector('form').addEventListener('submit', () => {
                 clearInterval(intervalId);
             });
 
+            // Initialize tooltips
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });

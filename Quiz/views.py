@@ -152,9 +152,6 @@ def ethics_questions(request):
     return get_questions_by_category(request, 'ethics')
 
 
-
-
-
 # views.py
 def quiz_view(request, category):
     questions = QuesModel.objects.filter(category=category)
@@ -312,5 +309,4 @@ def stats(request):
 
     except Exception as e:
         logger.error("Error in stats view: %s", str(e))
-        # Handle errors gracefully, e.g., return an error page or redirect
         return render(request, 'Quiz/error.html', {'error_message': 'An error occurred'})

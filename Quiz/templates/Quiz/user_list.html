@@ -1,18 +1,23 @@
 {% extends 'Quiz/dependencies.html' %}
+
 {% block content %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
+    <!-- Link to custom user_list.css stylesheet -->
     <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/user_list.css' %}">
 </head>
 <body>
 
+    <!-- User List section -->
     <section aria-labelledby="user-list">
         <h2 id="user-list">User List</h2>
+        <!-- Table for listing users -->
         <table role="table">
             <thead>
                 <tr>
@@ -23,11 +28,16 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Loop through user profiles -->
                 {% for user_profile in users %}
                     <tr>
+                        <!-- Display username -->
                         <td>{{ user_profile.user.username }}</td>
+                        <!-- Display average score -->
                         <td>{{ user_profile.calculate_average_score }}</td>
+                        <!-- Display number of tests taken -->
                         <td>{{ user_profile.num_tests_taken }}</td>
+                        <!-- Link to view details for the user -->
                         <td>
                             <a href="{% url 'user-detail' user_profile.id %}" aria-label="View details for {{ user_profile.user.username }}">
                                 Details

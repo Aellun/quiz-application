@@ -6,53 +6,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <!-- <link rel="stylesheet" href="{% static 'css/dashboard.css' %}"> -->
+    <!-- Include Ionicons for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.10-0/css/ionicons.min.css">
-    <style>
-        
-    </style>
 </head>
 <body>
+    <!-- Header section -->
     <div class="header">
         <h1>Learnhub</h1>
     </div>
+
+    <!-- First dashboard container -->
     <div class="dashboard-container">
+        <!-- Card for Analytics -->
         <div class="card">
             <div class="icon"><i class="ion-ios-analytics"></i></div>
             <h3>Analytics</h3>
             <p>Get detailed insights and reports.</p>
         </div>
+
+        <!-- Card for Users -->
         <div class="card">
             <div class="icon"><i class="ion-ios-people"></i></div>
             <h3>Users</h3>
             <p>Manage your users and their activities.</p>
         </div>
+
+        <!-- Card for Courses -->
         <div class="card">
             <div class="icon"><i class="ion-ios-book"></i></div>
             <h3>Courses</h3>
             <p>View and manage your courses.</p>
         </div>
+
+        <!-- Card for Statistics -->
         <div class="card">
             <div class="icon"><i class="ion-ios-stats"></i></div>
             <h3>Statistics</h3>
             <p>View performance statistics.</p>
         </div>
     </div>
+
+    <!-- Second dashboard container for detailed statistics -->
     <div class="dashboard-container">
         <h2>Statistics</h2>
         <div class="statistics">
+            <!-- Statistic card for Active Users -->
             <div class="stat">
                 <h3>150</h3>
                 <p>Active Users</p>
             </div>
+
+            <!-- Statistic card for New Signups -->
             <div class="stat">
                 <h3>30</h3>
                 <p>New Signups</p>
             </div>
+
+            <!-- Statistic card for Courses Available -->
             <div class="stat">
                 <h3>120</h3>
                 <p>Courses Available</p>
             </div>
+
+            <!-- Statistic card for Quizzes Taken -->
             <div class="stat">
                 <h3>300</h3>
                 <p>Quizzes Taken</p>

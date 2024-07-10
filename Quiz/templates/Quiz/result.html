@@ -1,43 +1,55 @@
 {% extends 'Quiz/dependencies.html' %}
 {% load static %}
+
 {% block head %}
+    <!-- Link to custom result.css stylesheet -->
     <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/result.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container center-content" style="max-width: 600px; margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <!-- Congratulations message -->
     <h1 class="congratulations" style="text-align: center; color: #28a745; margin-bottom: 20px;">Congratulations!</h1>
+    <!-- Motivational message -->
     <p class="motivational" style="text-align: center; font-size: 18px; color: #555; margin-bottom: 20px;">You've completed the quiz. Here are your results:</p>
     
+    <!-- Result card -->
     <div class="card" style="width: 100%; max-width: 500px; margin: auto;">
         <div class="card-body" style="padding: 20px;">
+            <!-- Score display -->
             <h5 class="card-title" style="font-size: 22px; margin-bottom: 10px;">Score: {{ score }}</h5>
+            <!-- Results table -->
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tbody>
                     <tr>
+                        <!-- Percentage row -->
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Percentage:</td>
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ percent }}%</td>
                     </tr>
                     <tr>
+                        <!-- Time taken row -->
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Time Taken:</td>
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ time }} seconds</td>
                     </tr>
                     <tr>
+                        <!-- Correct answers row -->
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Correct Answers:</td>
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ correct }}</td>
                     </tr>
                     <tr>
+                        <!-- Incorrect answers row -->
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Incorrect Answers:</td>
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ wrong }}</td>
                     </tr>
                     <tr>
+                        <!-- Total questions row -->
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">Total Questions:</td>
                         <td style="padding: 12px 15px; border: 1px solid #dee2e6; text-align: left;">{{ total }}</td>
                     </tr>
                 </tbody>
             </table>
+            <!-- message -->
             <h5 style="text-align: center; margin-top: 20px; color: #555;">All the best for the next quiz!</h5>
-            
         </div>
     </div>
 </div>

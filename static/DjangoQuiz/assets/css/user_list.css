@@ -6,7 +6,7 @@ body {
 }
 
 section {
-    min-width: 600px; /* Adjust this as per your design */
+    min-width: 600px;
     background: #fff;
     padding: 20px 25px;
     border-radius: 3px;

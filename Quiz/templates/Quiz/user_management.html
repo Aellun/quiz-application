@@ -1,26 +1,34 @@
 {% extends 'Quiz/dependencies.html' %}
+
 {% block content %}
 {% load static %}
+
+<!-- Load custom CSS and external libraries -->
 <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/user_management.css' %}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- Container for the main content -->
 <div class="container-xl">
     <div class="table-responsive">
         <div class="table-wrapper">
+            <!-- Table title and action buttons -->
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
                         <h2>Manage <b>Users</b></h2>
                     </div>
                     <div class="col-sm-7">
+                        <!-- Buttons for adding new user and exporting to Excel -->
                         <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
                         <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
                     </div>
                 </div>
             </div>
+
+            <!-- User management table -->
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -32,6 +40,7 @@
                     </tr>
                 </thead>
                 <tbody id="user-table-body">
+                    <!-- Loop through users to display data -->
                     {% for user in users %}
                     <tr data-user-id="{{ user.id }}">
                         <td>{{ forloop.counter }}</td>
@@ -39,32 +48,37 @@
                         <td>{{ user.last_name }}</td>
                         <td>{{ user.email }}</td>
                         <td>
+                            <!-- Edit and delete action buttons with icons -->
                             <a href="#" class="settings edit-user-button" title="Edit" data-toggle="tooltip">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                   <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
                                 </svg>
-                              </a>
-                              
-                              <a href="#" class="delete delete-user-button" title="Delete" data-toggle="tooltip">
+                            </a>
+                            
+                            <a href="#" class="delete delete-user-button" title="Delete" data-toggle="tooltip">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                   <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                                 </svg>
-                              </a>
-                              
+                            </a>
+                            
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+
+            <!-- Pagination and entry count -->
             <div class="clearfix">
                 <div class="hint-text">Showing <b>{{ users|length }}</b> out of <b>{{ users.paginator.count }}</b> entries</div>
                 <ul class="pagination">
+                    <!-- Previous page link -->
                     {% if users.has_previous %}
                     <li class="page-item"><a href="?page={{ users.previous_page_number }}" class="page-link">Previous</a></li>
                     {% else %}
                     <li class="page-item disabled"><a href="#" class="page-link">Previous</a></li>
                     {% endif %}
+                    <!-- Page number links -->
                     {% for i in users.paginator.page_range %}
                     {% if users.number == i %}
                     <li class="page-item active"><a href="#" class="page-link">{{ i }}</a></li>
@@ -72,6 +86,7 @@
                     <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
                     {% endif %}
                     {% endfor %}
+                    <!-- Next page link -->
                     {% if users.has_next %}
                     <li class="page-item"><a href="?page={{ users.next_page_number }}" class="page-link">Next</a></li>
                     {% else %}
@@ -83,7 +98,7 @@
     </div>
 </div>
 
-<!-- Modal for editing user -->
+<!-- Modal for editing user details -->
 <div id="edit-user-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -94,6 +109,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <!-- Form for editing user details -->
                 <form id="edit-user-form">
                     <input type="hidden" name="user_id" id="edit-user-id">
                     <div class="form-group">
@@ -115,14 +131,16 @@
     </div>
 </div>
 
+<!-- JavaScript scripts for functionality -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
+    // Enable tooltips for action buttons
     $('[data-toggle="tooltip"]').tooltip();
 
-    // Edit user
+    // Edit user button functionality
     $('.edit-user-button').on('click', function() {
         let tr = $(this).closest('tr');
         let userId = tr.data('user-id');
@@ -130,20 +148,24 @@ $(document).ready(function() {
         let lastName = tr.children().eq(2).text();
         let email = tr.children().eq(3).text();
 
+        // Populate edit form fields with user data
         $('#edit-user-id').val(userId);
         $('#edit-first-name').val(firstName);
         $('#edit-last-name').val(lastName);
         $('#edit-email').val(email);
 
+        // Show the edit user modal
         $('#edit-user-modal').modal('show');
     });
 
+    // Handle form submission for editing user
     $('#edit-user-form').on('submit', function(e) {
         e.preventDefault();
 
         let userId = $('#edit-user-id').val();
         let formData = new FormData(this);
 
+        // AJAX request to update user details
         fetch(`/admin/users/edit/${userId}/`, {
             method: 'POST',
             body: formData,
@@ -155,6 +177,7 @@ $(document).ready(function() {
         .then(data => {
             alert(data.message);
             if (data.success) {
+                // Update table row with new data and close modal
                 let tr = $(`tr[data-user-id="${userId}"]`);
                 tr.children().eq(1).text(formData.get('first_name'));
                 tr.children().eq(2).text(formData.get('last_name'));
@@ -167,11 +190,12 @@ $(document).ready(function() {
         });
     });
 
-    // Delete user
+    // Delete user button functionality
     $('.delete-user-button').on('click', function() {
         let tr = $(this).closest('tr');
         let userId = tr.data('user-id');
 
+        // Confirm deletion and send AJAX request
         if (confirm('Are you sure you want to delete this user?')) {
             fetch(`/admin/users/delete/${userId}/`, {
                 method: 'POST',
@@ -183,6 +207,7 @@ $(document).ready(function() {
             .then(data => {
                 alert(data.message);
                 if (data.success) {
+                    // Remove table row if deletion was successful
                     tr.remove();
                 }
             })

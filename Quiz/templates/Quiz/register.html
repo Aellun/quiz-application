@@ -1,72 +1,86 @@
-
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     {% load static %}
+    <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Form | LearnHub</title>
     <!-- Google Fonts Link For Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap">
+    <!-- Static CSS file link -->
     <link rel="stylesheet" href="{% static 'DjangoQuiz/assets/css/signup.css' %}">
 </head>
 <body>
+    <!-- Background image container -->
     <div id="background-image">
+        <!-- Static image for background -->
         <img src="{% static 'DjangoQuiz/assets/images/hero-bg.jpg' %}" alt="Image">
     </div>
     
-        <div class="form-box signup">
-            
-            <div class="form-details">
-                <div id="signup_image">
-                    <img src="{% static 'DjangoQuiz/assets/images/login-img.jpg' %}" alt="Image">
-                    <h2>Create Account</h2>
+    <!-- Signup form box -->
+    <div class="form-box signup">
+        <div class="form-details">
+            <div id="signup_image">
+                <!-- Image for signup -->
+                <img src="{% static 'DjangoQuiz/assets/images/login-img.jpg' %}" alt="Image">
+                <h2>Create Account</h2>
                 <p>To become a part of our community, please sign up using your personal information.</p>
-                </div>
-                
             </div>
-            <div class="form-content">
-                <h2>SIGNUP</h2>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="input-field">
-                        {{ form.username }}
-                        <label for="{{ form.username.id_for_label }}">Username:</label>
-                    </div>
-                    <div class="input-field">
-                        {{ form.first_name }}
-                        <label for="{{ form.first_name.id_for_label }}">First Name:</label>
-                    </div>
-                    <div class="input-field">
-                        {{ form.last_name }}
-                        <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
-                    </div>
-                    <div class="input-field">
-                        {{ form.email }}
-                        <label for="{{ form.email.id_for_label }}">Email:</label>
-                    </div>
-                    <div class="input-field">
-                        {{ form.password1 }}
-                        <label for="{{ form.password1.id_for_label }}">Password:</label>
-                    </div>
-                    <div class="input-field">
-                        {{ form.password2 }}
-                        <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
-                    </div>
-                    <div class="policy-text">
-                        <input type="checkbox" id="policy">
-                        <label for="policy">
-                            I agree to the
-                            <a href="#" class="option">Terms & Conditions</a>
-                        </label>
-                    </div>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <div class="bottom-link">
-                    Already have an account? 
-                    <a href='{% url 'login' %}'>Login</a>
+        </div>
+        
+        <!-- Form content -->
+        <div class="form-content">
+            <h2>SIGNUP</h2>
+            <!-- Signup form using POST method -->
+            <form method="POST" action="">
+                {% csrf_token %}
+                <!-- Username input field -->
+                <div class="input-field">
+                    {{ form.username }}
+                    <label for="{{ form.username.id_for_label }}">Username:</label>
                 </div>
+                <!-- First name input field -->
+                <div class="input-field">
+                    {{ form.first_name }}
+                    <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                </div>
+                <!-- Last name input field -->
+                <div class="input-field">
+                    {{ form.last_name }}
+                    <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                </div>
+                <!-- Email input field -->
+                <div class="input-field">
+                    {{ form.email }}
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                </div>
+                <!-- Password input field -->
+                <div class="input-field">
+                    {{ form.password1 }}
+                    <label for="{{ form.password1.id_for_label }}">Password:</label>
+                </div>
+                <!-- Confirm password input field -->
+                <div class="input-field">
+                    {{ form.password2 }}
+                    <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                </div>
+                <!-- Policy agreement checkbox -->
+                <div class="policy-text">
+                    <input type="checkbox" id="policy">
+                    <label for="policy">
+                        I agree to the
+                        <a href="#" class="option">Terms & Conditions</a>
+                    </label>
+                </div>
+                <!-- Submit button for signup -->
+                <button type="submit">Sign Up</button>
+            </form>
+            <!-- Link to login page for existing users -->
+            <div class="bottom-link">
+                Already have an account? 
+                <a href='{% url 'login' %}'>Login</a>
             </div>
         </div>
     </div>

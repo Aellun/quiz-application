@@ -1,10 +1,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
-/* 
----------------------------------------------
-reset
---------------------------------------------- 
-*/
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -159,13 +155,13 @@ body {
     position: absolute;
     width: 300px;
     height: 250px;
-    top: 100%; /* Positions the dropdown just below the trigger */
+    top: 100%;
     left: 0;
     list-style: none;
     padding: 0;
     margin: 0;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Adds shadow for depth */
-    transition: all 0.3s ease; /* Smooth transition for dropdown appearance */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
   }
   
   /* Individual dropdown items */
@@ -176,7 +172,7 @@ body {
   }
   
   .dropdown-menu-item:hover {
-    background-color: darken(#ED3E44, 5%); /* Darkens the background on hover */
+    background-color: darken(#ED3E44, 5%);
   }
   
   /* Show the dropdown menu on hover or focus */
@@ -1329,7 +1325,7 @@ Testimonials Style
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 20px; /* Adjust the gap between icons as needed */
+  gap: 20px;
 }
 
 .social-icons li {
@@ -1338,13 +1334,13 @@ Testimonials Style
 
 .social-icons a {
   text-decoration: none;
-  color: inherit; /* Inherits the color of the parent element */
-  font-size: 24px; /* Adjust the size of the icons as needed */
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
+  color: inherit;
+  font-size: 24px;
+  transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #007bff; /* Change to your desired hover color */
+  color: #007bff; 
 }
 /* 
 ---------------------------------------------
