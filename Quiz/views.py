@@ -39,10 +39,9 @@ def login_page(request):
                 login(request, user)
                 # Ensure UserProfile exists
                 UserProfile.objects.get_or_create(user=user)
-                messages.success(request, "You have successfully logged in.")
-                return redirect('login')  # Redirect to show the message before final redirection to home
+                return JsonResponse({'success': True, 'message': 'You have successfully logged in.'})
             else:
-                messages.error(request, "Invalid username or password.")
+                return JsonResponse({'success': False, 'message': 'Invalid username or password.'}, status=400)
         else:
             form = AuthenticationForm()
         

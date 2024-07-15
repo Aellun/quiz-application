@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form method="POST" action="">
+    <form id="login-form" method="POST" action="{% url 'login' %}">
       {% csrf_token %}
       <h2>Login</h2>
       <!-- Username Field -->
@@ -47,50 +47,47 @@
   </div>
 
   <!-- Pop-up Message for Success -->
-  {% if messages %}
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var messages = document.querySelectorAll('.message');
-        messages.forEach(function(messageElement) {
-          var messageContent = messageElement.textContent;
-          var messageTag = messageElement.getAttribute('data-tag');
-          // Trigger SweetAlert2 notification based on the message tag
-          if (messageTag === 'success') {
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: messageContent,
-              timer: 3000,
-              showConfirmButton: false
-            }).then(function() {
-              window.location.href = "{% url 'home' %}"; // Redirect to the home page after the message
-            });
-          } else if (messageTag === 'error') {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: messageContent,
-              timer: 3000,
-              showConfirmButton: false
-            });
-          } else {
-            Swal.fire({
-              icon: 'info',
-              title: 'Info',
-              text: messageContent,
-              timer: 3000,
-              showConfirmButton: false
-            });
-          }
-        });
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+
+      const formData = new FormData(this);
+      fetch('{% url "login" %}', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Handle success case
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: data.message,
+            timer: 3000,
+            showConfirmButton: false
+          }).then(function() {
+            window.location.href = "{% url 'home' %}"; // Redirect to the home page after the message
+          });
+        } else {
+          // Handle error case
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: data.message,
+            timer: 3000,
+            showConfirmButton: false
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
-    </script>
-    <div style="display:none;">
-      {% for message in messages %}
-      <span class="message" data-tag="{{ message.tags }}">{{ message }}</span>
-      {% endfor %}
-    </div>
-  {% endif %}
+    });
+  </script>
 </body>
 </html>
 {% endblock %}
