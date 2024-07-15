@@ -50,7 +50,8 @@ h2 {
 .input-field {
   position: relative;
   border-bottom: 2px solid #ccc;
-  margin: 15px 0;
+  margin: 10px;
+  
 }
 
 .input-field label {
@@ -58,10 +59,12 @@ h2 {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  color: #fff;
-  font-size: 20px;
+  color: #aaa6a6;
+  font-size: 16px;
   pointer-events: none;
   transition: 0.15s ease;
+  
+  
 }
 
 .input-field input {
@@ -72,7 +75,10 @@ h2 {
   outline: none;
   font-size: 16px;
   color: #fff;
-  margin-top: 5px;
+  margin-top: 30px;
+ 
+ 
+  
 }
 
 .input-field input:focus~label,

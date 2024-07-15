@@ -39,7 +39,8 @@ def login_page(request):
                 login(request, user)
                 # Ensure UserProfile exists
                 UserProfile.objects.get_or_create(user=user)
-                return redirect('home')
+                messages.success(request, "You have successfully logged in.")
+                return redirect('login')  # Redirect to show the message before final redirection to home
             else:
                 messages.error(request, "Invalid username or password.")
         else:
