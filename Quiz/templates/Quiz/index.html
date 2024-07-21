@@ -58,9 +58,8 @@
                     <ul class="nav">
                       <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                       <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                      <li class="scroll-to-section"><a href="#team">Team</a></li>
-                      <li class="scroll-to-section"><a href="#events">Events</a></li>
                       <li class="scroll-to-section"><a href="#contact">contact us</a></li>
+                      <li class="scroll-to-section"><a href="#about">About us</a></li>
                       <li class="scroll-to-section"><a href='{% url 'register' %}'>singup</a></li>
                       <li class="scroll-to-section"><a href='{% url 'login' %}'>Login</a></li>
                   </ul>   
@@ -88,7 +87,7 @@
                 <div class="buttons">
                   
                   <div class="icon-button">
-                    <a href="#"><i class="fa fa-play"></i> What's LearnHub?</a>
+                    <a href="#about"><i class="fa fa-play"></i> What's LearnHub?</a>
                   </div>
                 </div>
               </div>
@@ -100,7 +99,7 @@
                 <p>By leveraging cutting-edge technologies and a user-centric approach, the LearnHub aims to empower employees at all levels, fostering a culture of continuous learning and talent development.</p>
                 <div class="buttons">
                   <div class="main-button">
-                    <a href="#">Request Demo</a>
+                    <a href='{% url 'login' %}'>Request Demo</a>
                   </div>
                   <div class="icon-button">
                     <a href="#"><i class="fa fa-play"></i> What's the best result?</a>
@@ -243,7 +242,9 @@
             </div>
           </div>
         </div>
+        
         <div class="col-lg-5 align-self-center">
+          <div class="about-us section" id="about"></div>
           <div class="section-heading">
             <h6>About Us</h6>
             <h2>What make us the best HR and employees partner online?</h2>
