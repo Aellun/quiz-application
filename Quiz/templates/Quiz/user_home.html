@@ -60,19 +60,8 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                       <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="#services">Services</a></li>
                       <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                      <li class="nav-item nav-item-dropdown">
-                        <a class="dropdown-trigger" href="#">Take Quiz</a>
-                        <ul class="dropdown-menu">
-                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'programming' %}">Computer Science</a></li>
-                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'communication' %}">Communication Skills</a></li>
-                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'emotion' %}">Emotional Intelligence</a></li>
-                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'ethics' %}">Ethics</a></li>
-                          <li class="dropdown-menu-item"><a href="{% url 'quiz_view' 'sales' %}">Customer Service</a></li>
-                        </ul>
-                      </li>
-                      
-                      
                       <li class="scroll-to-section"><a href="#contact">contact us</a></li>
                       <li><a href="{% url 'logout' %}">Logout</a></li> 
                     </ul>   
@@ -99,7 +88,7 @@
                 <p>LearnHub is a transformative web-based application designed to address the crucial need for self-development tools and resources within our organization.</p>
                 <div class="buttons">
                   <div class="icon-button">
-                    <a href="#"><i class="fa fa-play"></i> What's LearnHub?</a>
+                    <a href="#about"><i class="fa fa-play"></i> What's LearnHub?</a>
                   </div>
                 </div>
               </div>
@@ -111,7 +100,7 @@
                 <p>By leveraging cutting-edge technologies and a user-centric approach, the LearnHub aims to empower employees at all levels, fostering a culture of continuous learning and talent development.</p>
                 <div class="buttons">
                   <div class="main-button">
-                    <a href="#">Request Demo</a>
+                    <a href='{% url 'login' %}''>Request Demo</a>
                   </div>
                   <div class="icon-button">
                     <a href="#"><i class="fa fa-play"></i> What's the best result?</a>
@@ -138,6 +127,9 @@
   </div>
 
   <div class="services section" id="services">
+    <div class="section-heading">
+      <div class="col-lg-12 text-center">
+    <h2>What we offer</h2>
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6">
@@ -153,7 +145,7 @@
                 Enjoy the benefits of lower costs and a tailored learning experience, 
                 all from the comfort of your home..</p>
               <div class="main-button">
-                <a href="#">Read More</a>
+                <a href="https://www.coursera.org/degrees" target="_blank">Read More</a>
               </div>
             </div>
           </div>
@@ -172,7 +164,7 @@
                 Gain new knowledge and certifications in a fraction of the time, 
                 empowering you to stay competitive and up-to-date in your field.</p>
               <div class="main-button">
-                <a href="#">Read More</a>
+                <a href="https://alison.com/all-free-online-courses-certificates-diplomas" target="_blank">Read More</a>
               </div>
             </div>
           </div>
@@ -188,7 +180,7 @@
                 They are designed to protect your rights, promote ethical behavior, and support a positive and productive work environment. 
                 By adhering to these policies, we foster a culture of trust, integrity, and accountability.</p>
               <div class="main-button">
-                <a href="#">Read More</a>
+                <a href="https://docs.google.com/document/d/1nDLd0-HZT3YuHIIQ2MfjfMkI1kd5qw4V6t5LAfXzDxY/edit?usp=sharing" target="_blank">Read More</a>
               </div>
             </div>
           </div>
@@ -212,97 +204,117 @@
           <a class="is_active" href="#!" data-filter="*">Show All</a>
         </li>
         <li>
-          <a href="#!" data-filter=".design">Communication Skills</a>
+          <a href="#!" data-filter=".design">Project management</a>
         </li>
         <li>
-          <a href="#!" data-filter=".development">Emotional Intelligence</a>
+          <a href="#!" data-filter=".development">Change management</a>
         </li>
         <li>
-          <a href="#!" data-filter=".wordpress">Ethics</a>
+          <a href="#!" data-filter=".wordpress">Technology and Tools Training</a>
         </li>
       </ul>
       <div class="row event_box">
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-01.jpg' %}" alt=""></a>
-              <span class="category">Communication Skills</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="https://www.linkedin.com/pulse/8-project-management-best-practices-timely-cost-efficient-/" target="_blank"><img src="{% static 'DjangoQuiz/assets/images/pm.png' %}" alt=""></a>
+              <span class="category">Project management</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">okello kevin</span>
-              <h4>Learn communication skills</h4>
+              <span class="author">10 courses</span>
+              <h4>Boost your Project management Skills</h4>
+            </div>
+            <div class="main-button">
+              <a href="{% url 'quiz_view' 'communication' %}" target="_blank">Take Quiz</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6  development">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-02.jpg' %}" alt=""></a>
-              <span class="category">Emotional Intelligence</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="https://blog.hubspot.com/service/good-customer-service" target="_blank"><img src="{% static 'DjangoQuiz/assets/images/customer_service.png' %}" alt=""></a>
+              <span class="category">Customer Service</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Allan Kevin</span>
-              <h4>Emotional Intelligence Foundtion</h4>
+              <span class="author">6 courses</span>
+              <h4>Improve your customer service skills</h4>
+            </div>
+            <div class="main-button">
+              <a href="https://alison.com/all-free-online-courses-certificates-diplomas" target="_blank">Take Quiz</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design wordpress">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-03.jpg' %}" alt=""></a>
-              <span class="category">Policy</span>
-              <span class="price"><h6><em>$</em>key</h6></span>
+              <a href="https://www.researchgate.net/figure/Change-Management-best-practice-USAID-2015_fig1_337815090" target="_blank"><img src="{% static 'DjangoQuiz/assets/images/Change-Management.png' %}" alt=""></a>
+              <span class="category">Change management</span>
+              <!-- <span class="price"><h6><em>$</em>key</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Kevin Allan</span>
-              <h4>Familiarize with company policy</h4>
+              <span class="author">5 courses</span>
+              <h4>Towards Tomorrow</h4>
+            </div>
+            <div class="main-button">
+              <a href="{% url 'quiz_view' 'emotion' %}" target="_blank">Take Quiz</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 development">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-04.jpg' %}" alt=""></a>
-              <span class="category">Ethics</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="https://upraise.io/blog/everything-you-need-to-know-about-performance-management/" target="_blank"><img src="{% static 'DjangoQuiz/assets/images/Performance-Management.png' %}" alt=""></a>
+              <span class="category">Performance management</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Kevin</span>
-              <h4>Learn workplace Ethos</h4>
+              <span class="author">5 courses</span>
+              <h4>Advance your career</h4>
+            </div>
+            <div class="main-button">
+              <a href="{% url 'quiz_view' 'ethics' %}" target="_blank">Take Quiz</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress development">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-05.jpg' %}" alt=""></a>
-              <span class="category">Marketing</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="https://www.lystloc.com/blog/7-best-advanced-sales-training-program-to-upgrade-your-sales-career/" target="_blank"><img src="{% static 'DjangoQuiz/assets/images/Sales-Training.png' %}" alt=""></a>
+              <span class="category">Sales Training</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Okello</span>
-              <h4>Marketing and sale foundation</h4>
+              <span class="author">5 courses</span>
+              <h4>Enhance your sales Skills</h4>
+            </div>
+            <div class="main-button">
+              <a href="{% url 'quiz_view' 'sales' %}" target="_blank">Take Quiz</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress design">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-06.jpg' %}" alt=""></a>
-              <span class="category">EDMS</span>
-              <span class="price"><h6><em>$</em>key</h6></span>
+              <a href="https://www.simplilearn.com/best-ai-tools-to-boost-productivity-article" target="_blank"><img src="{% static 'DjangoQuiz/assets/images/technology.png' %}" alt=""></a>
+              <span class="category">Technology and Tools Training</span>
+              <!-- <span class="price"><h6><em>$</em>key</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">kevin</span>
-              <h4>Fundamentals of EDMS</h4>
+              <span class="author">11 courses</span>
+              <h4>Embrace New Technology</h4>
+            </div>
+            <div class="main-button">
+              <a href="{% url 'quiz_view' 'programming' %}" target="_blank">Take Quiz</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+
   
   <div class="contact-us section" id="contact">
     <div class="container">

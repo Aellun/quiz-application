@@ -57,9 +57,10 @@
                     <!-- ***** navigation Menu Start ***** -->
                     <ul class="nav">
                       <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="#services">Services</a></li>
                       <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                      <li class="scroll-to-section"><a href="#contact">contact us</a></li>
                       <li class="scroll-to-section"><a href="#about">About us</a></li>
+                      <li class="scroll-to-section"><a href="#contact">contact us</a></li>
                       <li class="scroll-to-section"><a href='{% url 'register' %}'>singup</a></li>
                       <li class="scroll-to-section"><a href='{% url 'login' %}'>Login</a></li>
                   </ul>   
@@ -81,7 +82,7 @@
           <div class="owl-carousel owl-banner">
             <div class="item item-1">
               <div class="header-text">
-                <span class="category">Our Courses</span>
+                <span class="category">what we stand for</span>
                 <h2>With LearnHub, Everything Is Easier</h2>
                 <p>LearnHub is a transformative web-based application designed to address the crucial need for self-development tools and resources within our organization.</p>
                 <div class="buttons">
@@ -128,9 +129,13 @@
   <!-- services section -->
 
   <div class="services section" id="services">
+    <div class="section-heading">
+      <div class="col-lg-12 text-center">
+    <h2>What we offer</h2>
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-12 col-md-6">
+          
           <div class="service-item">
             <div class="icon">
               <img src="{% static 'DjangoQuiz/assets/images/service-01.png' %}" alt="online degrees">
@@ -143,12 +148,13 @@
                 Enjoy the benefits of lower costs and a tailored learning experience, 
                 all from the comfort of your home..</p>
               <div class="main-button">
-                <a href="#">Read More</a>
+                <a href="https://www.coursera.org/degrees" target="_blank">Read More</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        </div>
+        <div class="col-lg-12 col-md-6">
           <div class="service-item">
             <div class="icon">
               <img src="{% static 'DjangoQuiz/assets/images/service-02.png' %}" alt="short courses">
@@ -162,12 +168,12 @@
                 Gain new knowledge and certifications in a fraction of the time, 
                 empowering you to stay competitive and up-to-date in your field.</p>
               <div class="main-button">
-                <a href="#">Read More</a>
+                <a href="https://alison.com/all-free-online-courses-certificates-diplomas" target="_blank">Read More</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-12 col-md-6">
           <div class="service-item">
             <div class="icon">
               <img src="{% static 'DjangoQuiz/assets/images/service-03.png' %}" alt="web experts">
@@ -178,12 +184,13 @@
                 They are designed to protect your rights, promote ethical behavior, and support a positive and productive work environment. 
                 By adhering to these policies, we foster a culture of trust, integrity, and accountability.</p>
               <div class="main-button">
-                <a href="#">Read More</a>
+                <a href="https://docs.google.com/document/d/1nDLd0-HZT3YuHIIQ2MfjfMkI1kd5qw4V6t5LAfXzDxY/edit?usp=sharing" target="_blank">Read More</a>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 
@@ -252,7 +259,8 @@
               extensive networking opportunities, and personalized support, 
               empowering individuals and organizations to thrive in the modern workplace.</p>
             <div class="main-button">
-              <a href="#">Discover More</a>
+              <a href="https://my-portfolio-nine-delta-76.vercel.app" target="_blank">Discover More</a>
+
             </div>
           </div>
         </div>
@@ -276,91 +284,91 @@
           <a class="is_active" href="#!" data-filter="*">Show All</a>
         </li>
         <li>
-          <a href="#!" data-filter=".design">Communication Skills</a>
+          <a href="#!" data-filter=".design">Project management</a>
         </li>
         <li>
-          <a href="#!" data-filter=".development">Emotional Intelligence</a>
+          <a href="#!" data-filter=".development">Change management</a>
         </li>
         <li>
-          <a href="#!" data-filter=".wordpress">Ethics</a>
+          <a href="#!" data-filter=".wordpress">Technology and Tools Training</a>
         </li>
       </ul>
       <div class="row event_box">
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-01.jpg' %}" alt=""></a>
-              <span class="category">Communication Skills</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/pm.png' %}" alt=""></a>
+              <span class="category">Project management</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">okello kevin</span>
-              <h4>Learn communication skills</h4>
+              <span class="author">10 courses</span>
+              <h4>Boost your Project management Skills</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6  development">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-02.jpg' %}" alt=""></a>
-              <span class="category">Emotional Intelligence</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/customer_service.png' %}" alt=""></a>
+              <span class="category">Customer Service</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Allan Kevin</span>
-              <h4>Emotional Intelligence Foundtion</h4>
+              <span class="author">6 courses</span>
+              <h4>Improve your customer service skills</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design wordpress">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-03.jpg' %}" alt=""></a>
-              <span class="category">Policy</span>
-              <span class="price"><h6><em>$</em>key</h6></span>
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/Change-Management.png' %}" alt=""></a>
+              <span class="category">Change management</span>
+              <!-- <span class="price"><h6><em>$</em>key</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Kevin Allan</span>
-              <h4>Familiarize with company policy</h4>
+              <span class="author">5 courses</span>
+              <h4>Towards Tomorrow</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 development">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-04.jpg' %}" alt=""></a>
-              <span class="category">Ethics</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/Performance-Management.png' %}" alt=""></a>
+              <span class="category">Performance management</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Kevin</span>
-              <h4>Learn workplace Ethos</h4>
+              <span class="author">5 courses</span>
+              <h4>Advance your career</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress development">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-05.jpg' %}" alt=""></a>
-              <span class="category">Marketing</span>
-              <span class="price"><h6><em>$</em>free</h6></span>
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/Sales-Training.png' %}" alt=""></a>
+              <span class="category">Sales Training</span>
+              <!-- <span class="price"><h6><em>$</em>free</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">Okello</span>
-              <h4>Marketing and sale foundation</h4>
+              <span class="author">5 courses</span>
+              <h4>Enhance your sales Skills</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress design">
           <div class="events_item">
             <div class="thumb">
-              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/course-06.jpg' %}" alt=""></a>
-              <span class="category">EDMS</span>
-              <span class="price"><h6><em>$</em>key</h6></span>
+              <a href="#"><img src="{% static 'DjangoQuiz/assets/images/technology.png' %}" alt=""></a>
+              <span class="category">Technology and Tools Training</span>
+              <!-- <span class="price"><h6><em>$</em>key</h6></span> -->
             </div>
             <div class="down-content">
-              <span class="author">kevin</span>
-              <h4>Fundamentals of EDMS</h4>
+              <span class="author">11 courses</span>
+              <h4>Embrace New Technology</h4>
             </div>
           </div>
         </div>
